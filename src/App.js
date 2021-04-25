@@ -53,7 +53,7 @@ function App() {
     <div className="App">
       <header className="header-container">
         <div className="content-wrapper row">
-          <a href="/">
+          <a href="https://www.eleuther.ai/">
             <img
               id="logo"
               className="logo-image"
