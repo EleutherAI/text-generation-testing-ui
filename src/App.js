@@ -125,7 +125,7 @@ function App() {
             </div>
           </div>
           {isLoading && <Loader />}
-          {errorText && <p className="error-text">{errorText}</p>}
+          {errorText && !isLoading && <p className="error-text">{errorText}</p>}
 
           {resultText && !isLoading && (
             <div className="result-section">
