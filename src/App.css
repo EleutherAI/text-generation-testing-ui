@@ -1,27 +1,7 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
 .App-link {
@@ -34,5 +14,378 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+/* .slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 15px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #4caf50;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #4caf50;
+  cursor: pointer;
+} */
+
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,700;1,900&display=swap");
+
+:root {
+  --black: #000000;
+  --white: #ffffff;
+  --green: #699f56;
+  --blue: #34566f;
+  --grey: #959595;
+  --grey2: #d8d8d8;
+  --red: #aa4926;
+  --orange: #cc7832;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+li,
+ol,
+td,
+tr,
+th,
+table,
+div,
+p {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: var(--black);
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.centralize-text {
+  text-align: center;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+  font-size: 16px;
+}
+
+.header-container {
+  height: 3.2em;
+  background-color: var(--black);
+  padding-top: 0.625em;
+}
+
+.header-container .content-wrapper {
+  flex-direction: row;
+}
+
+header .logo-image {
+  width: 40px;
+  height: 40px;
+}
+
+.content-wrapper {
+  margin: 0 auto;
+  padding: 0 0.5em;
+  max-width: 40em;
+  overflow-y: hidden;
+}
+
+.row {
+  display: flex;
+}
+
+h1.logo-text {
+  font-size: 1.4em;
+  font-weight: 400;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+  border: 0px none;
+  position: relative;
+  left: 0.75em;
+  top: 0.4em;
+  color: var(--white);
+}
+
+h1.logo-text a {
+  text-decoration: none;
+  color: var(--white);
+}
+
+h1.logo {
+  margin-top: 0.3em;
+  font-size: 1.66em;
+  font-weight: 700;
+}
+
+.main {
+  padding-top: 1.5em;
+}
+
+h2.page-title {
+  font-size: 1.4em;
+  text-align: center;
+  margin: 1.2em 0 2em 0;
+}
+
+.model-choice-section {
+  margin: 1.2em 0;
+  font-size: 1em;
+}
+
+.model-name {
+  font-weight: bold;
+}
+
+.model-icon img {
+  position: relative;
+  left: 0.4em;
+  top: 0.2em;
+  width: 18px;
+  height: 18px;
+}
+
+.form-container {
+  margin: 2.5em 0em 1.5em 0em;
+}
+
+.prompt-input textarea {
+  border: none;
+  overflow: auto;
+  outline: none;
+
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+
+  resize: none; /*remove the resize handle on the bottom right*/
+
+  border: 0px none;
+  border-bottom: 1px solid var(--grey2);
+  width: 100%;
+  font-family: "Lato", sans-serif;
+  font-size: 1em;
+}
+
+.prompt-input textarea:focus {
+  border-bottom: 1px solid var(--blue);
+}
+
+.model-controls {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 2em 0 1.6em 0;
+}
+
+.slider-title {
+  text-align: center;
+  font-size: 0.8em;
+}
+
+.slider-value {
+  text-align: center;
+  font-size: 0.8em;
+}
+
+.button-container {
+  text-align: center;
+}
+
+.button-primary {
+  background-color: transparent;
+  padding: 0.4em 1em;
+  font-size: 1.1em;
+  color: var(--blue);
+  border: 1px solid var(--blue);
+  cursor: pointer;
+}
+
+.button-primary:hover {
+  opacity: 0.7;
+}
+
+.button-icon {
+  position: relative;
+  left: 0.4em;
+  top: 0.1em;
+}
+
+.button-container .footer-container {
+  margin-top: 2em;
+  background-color: var(--grey);
+  padding: 0.75em 0;
+}
+
+.result-text {
+  font-size: 1em;
+  font-weight: 200;
+  line-height: 1.2em;
+}
+
+footer {
+  margin-top: 6em;
+}
+
+.footer-content {
+  text-align: center;
+  font-size: 0.6em;
+}
+
+.footer-text a {
+  text-decoration: underline;
+  color: white;
+}
+
+/* ------ RESPONSIVE STYLES ------ */
+
+/* Phone */
+/* @media (min-width: 450px) {
+} */
+
+/* Tablet */
+/* @media (max-width: 769px) {
+  .content-wrapper {
+    max-width: 769px;
+    width: 100%;
+  }
+
+  .image-content img {
+    width: 350px;
+  }
+} */
+
+/* Laptop */
+@media (min-width: 960px) {
+  .content-wrapper {
+    max-width: 35em;
+  }
+}
+
+/* Desktop */
+
+@media (min-width: 1140px) {
+  .content-wrapper {
+    max-width: 45em;
+  }
+}
+
+.loader-container {
+  text-align: center;
+  margin-top: 3em;
+}
+
+.lds-spinner {
+  color: official;
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.lds-spinner div {
+  transform-origin: 40px 30px;
+  animation: lds-spinner 1.2s linear infinite;
+}
+.lds-spinner div:after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 3px;
+  left: 37px;
+  width: 6px;
+  height: 13px;
+  border-radius: 20%;
+  background: var(--black);
+}
+.lds-spinner div:nth-child(1) {
+  transform: rotate(0deg);
+  animation-delay: -1.1s;
+}
+.lds-spinner div:nth-child(2) {
+  transform: rotate(30deg);
+  animation-delay: -1s;
+}
+.lds-spinner div:nth-child(3) {
+  transform: rotate(60deg);
+  animation-delay: -0.9s;
+}
+.lds-spinner div:nth-child(4) {
+  transform: rotate(90deg);
+  animation-delay: -0.8s;
+}
+.lds-spinner div:nth-child(5) {
+  transform: rotate(120deg);
+  animation-delay: -0.7s;
+}
+.lds-spinner div:nth-child(6) {
+  transform: rotate(150deg);
+  animation-delay: -0.6s;
+}
+.lds-spinner div:nth-child(7) {
+  transform: rotate(180deg);
+  animation-delay: -0.5s;
+}
+.lds-spinner div:nth-child(8) {
+  transform: rotate(210deg);
+  animation-delay: -0.4s;
+}
+.lds-spinner div:nth-child(9) {
+  transform: rotate(240deg);
+  animation-delay: -0.3s;
+}
+.lds-spinner div:nth-child(10) {
+  transform: rotate(270deg);
+  animation-delay: -0.2s;
+}
+.lds-spinner div:nth-child(11) {
+  transform: rotate(300deg);
+  animation-delay: -0.1s;
+}
+.lds-spinner div:nth-child(12) {
+  transform: rotate(330deg);
+  animation-delay: 0s;
+}
+
+.loader-text {
+  font-size: 0.85em;
+  color: var(--grey);
+}
+@keyframes lds-spinner {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }
