@@ -21,20 +21,17 @@ function App() {
     temp = 0.75
   ) => {
     setIsLoading(true);
-    fetch(
-      "https://cors-proxy-janko.herokuapp.com/http://34.90.220.168:5000/complete",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          context: text,
-          top_p: topP,
-          temp: temp,
-        }),
-      }
-    )
+    fetch("http://34.90.220.168:5000/complete", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        context: text,
+        top_p: topP,
+        temp: temp,
+      }),
+    })
       .then((response) => response.json())
       .then((data) => {
         console.log("Success:", data);
