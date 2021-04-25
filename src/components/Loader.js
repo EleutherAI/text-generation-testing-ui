@@ -1,9 +1,9 @@
-import React from "react";
+import React from "react"
 
 export default function Loader() {
   return (
     <div className="loader-container">
-      <div class="lds-spinner">
+      <div className="lds-spinner">
         <div></div>
         <div></div>
         <div></div>
@@ -19,5 +19,5 @@ export default function Loader() {
       </div>
       <p className="loader-text">Waiting for the model to respond...</p>
     </div>
-  );
+  )
 }

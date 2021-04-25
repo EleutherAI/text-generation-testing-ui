@@ -192,14 +192,14 @@ h2.page-title {
   resize: none; /*remove the resize handle on the bottom right*/
 
   border: 0px none;
-  border-bottom: 1px solid var(--grey2);
+  border-bottom: 2px solid var(--grey2);
   width: 100%;
   font-family: "Lato", sans-serif;
   font-size: 1em;
 }
 
 .prompt-input textarea:focus {
-  border-bottom: 1px solid var(--blue);
+  border-bottom: 2px solid var(--blue);
 }
 
 .model-controls {
@@ -265,6 +265,11 @@ footer {
 .footer-text a {
   text-decoration: underline;
   color: white;
+}
+
+.error-text {
+  text-align: center;
+  color: red;
 }
 
 /* ------ RESPONSIVE STYLES ------ */

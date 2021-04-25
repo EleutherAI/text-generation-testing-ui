@@ -1,62 +1,59 @@
-import { useState, useEffect } from "react";
-import "./App.css";
+import { useState, useEffect } from "react"
+import "./App.css"
 
-import Loader from "./components/Loader";
+import Loader from "./components/Loader"
 
 function App() {
-  const [promptText, setPromptText] = useState("");
-  const [topP, setTopP] = useState(0.5);
-  const [temp, setTemp] = useState(0.5);
-  const [resultText, setResultText] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [promptText, setPromptText] = useState("")
+  const [topP, setTopP] = useState(0.5)
+  const [temp, setTemp] = useState(0.5)
+  const [resultText, setResultText] = useState("")
+  const [isLoading, setIsLoading] = useState(false)
+  const [errorText, setErrorText] = useState("")
+
+  const proxy = "https://cors-proxy-janko.herokuapp.com/"
 
   useEffect(() => {
-    setResultText("");
-    setIsLoading(false);
-  }, []);
+    setResultText("")
+    setErrorText("")
+    setIsLoading(false)
+  }, [])
 
-  const onClickSendPromptButton = (
-    text = "eleuther",
-    topP = 0.9,
-    temp = 0.75
-  ) => {
-    setIsLoading(true);
+  const onClickSendPromptButton = (text = "eleuther", topP = 0.9, temp = 0.75) => {
+    setIsLoading(true)
     fetch("http://34.90.220.168:5000/complete", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
         context: text,
         top_p: topP,
-        temp: temp,
-      }),
+        temp: temp
+      })
     })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Success:", data);
-        setIsLoading(false);
+      .then(response => response.json())
+      .then(data => {
+        console.log("Success:", data)
+        setIsLoading(false)
+        setErrorText("")
         if (data.completion) {
-          setResultText(data.completion);
+          setResultText(data.completion)
         }
       })
-      .catch((error) => {
-        setIsLoading(false);
-        console.error("Error:", error);
-      });
-  };
+      .catch(error => {
+        setIsLoading(false)
+        console.error("Error:", error)
+        setErrorText("Unable to connect to the model. Please try again.")
+      })
+  }
 
   return (
     <div className="App">
       <header className="header-container">
         <div className="content-wrapper row">
           <a href="https://www.eleuther.ai/">
-            <img
-              id="logo"
-              className="logo-image"
-              src="img/eai_logo_small_exported.png"
-              alt="Eleuther AI logo"
-            />
+            <img id="logo" className="logo-image" src="img/eai_logo_small_exported.png" alt="Eleuther AI logo" />
           </a>
           <h1 className="logo-text">
             <a href="/">EleutherAI</a>
@@ -78,8 +75,7 @@ function App() {
               <textarea
                 className="prompt-textarea"
                 placeholder="Write some prompt..."
-                onChange={(evt) => setPromptText(evt.currentTarget.value)}
-              ></textarea>
+                onChange={evt => setPromptText(evt.currentTarget.value)}></textarea>
             </div>
             <div className="model-controls">
               <div className="slider-container">
@@ -92,7 +88,7 @@ function App() {
                     className="slider"
                     id="myTopPRange"
                     onChange={({ target: { value: radius } }) => {
-                      setTopP(radius / 100);
+                      setTopP(radius / 100)
                     }}
                   />
                 </p>
@@ -108,7 +104,7 @@ function App() {
                     className="slider"
                     id="myTempRange"
                     onChange={({ target: { value: radius } }) => {
-                      setTemp(radius / 100);
+                      setTemp(radius / 100)
                     }}
                   />
                 </p>
@@ -118,10 +114,9 @@ function App() {
             <div className="button-container">
               <button
                 onClick={() => {
-                  onClickSendPromptButton(promptText, topP, temp);
+                  onClickSendPromptButton(promptText, topP, temp)
                 }}
-                className="button-primary"
-              >
+                className="button-primary">
                 Run the model!
                 <span className="button-icon">
                   <img src="img/lightning.svg" alt="lightning icon" />
@@ -130,6 +125,7 @@ function App() {
             </div>
           </div>
           {isLoading && <Loader />}
+          {errorText && <p className="error-text">{errorText}</p>}
 
           {resultText && !isLoading && (
             <div className="result-section">
@@ -143,7 +139,7 @@ function App() {
         <div className="footer-content">Eleuther AI 2021</div>
       </footer>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
