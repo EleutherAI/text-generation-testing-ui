@@ -12,6 +12,7 @@ function App() {
   const [errorText, setErrorText] = useState("")
 
   const proxy = "https://cors-proxy-janko.herokuapp.com/"
+  const endpoint = "http://34.90.220.168:5000/complete"
 
   useEffect(() => {
     setResultText("")
@@ -21,7 +22,7 @@ function App() {
 
   const onClickSendPromptButton = (text = "eleuther", topP = 0.9, temp = 0.75) => {
     setIsLoading(true)
-    fetch("http://34.90.220.168:5000/complete", {
+    fetch(proxy + endpoint, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
