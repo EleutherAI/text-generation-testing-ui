@@ -5,9 +5,10 @@ import Loader from "./components/Loader"
 
 function App() {
   const [promptText, setPromptText] = useState("")
-  const [topP, setTopP] = useState(0.5)
-  const [temp, setTemp] = useState(0.5)
+  const [topP, setTopP] = useState(0.8)
+  const [temp, setTemp] = useState(0.8)
   const [resultText, setResultText] = useState("")
+  const [promptInResult, setPromptInResult] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const [errorText, setErrorText] = useState("")
 
@@ -19,7 +20,7 @@ function App() {
     setIsLoading(false)
   }, [])
 
-  const onClickSendPromptButton = (text = "eleuther", topP = 0.9, temp = 0.75) => {
+  const onClickSendPromptButton = (text = "eleuther", topP, temp) => {
     setIsLoading(true)
     fetch(endpoint, {
       method: "POST",
@@ -27,18 +28,23 @@ function App() {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        context: text,
+        context: text.trim(),
         top_p: topP,
         temp: temp
       })
     })
       .then(response => response.json())
       .then(data => {
-        console.log("Success:", data)
         setIsLoading(false)
         setErrorText("")
-        if (data.completion) {
-          setResultText(data.completion)
+        if (data && data.completion) {
+          let finalText = data.completion
+          if (finalText.search("<|endoftext|>") > -1) {
+            finalText = finalText.split("<|endoftext|>")[0]
+          }
+
+          setPromptInResult(promptText)
+          setResultText(finalText)
         }
       })
       .catch(error => {
@@ -87,6 +93,7 @@ function App() {
                     max="100"
                     className="slider"
                     id="myTopPRange"
+                    defaultValue="80"
                     onChange={({ target: { value: radius } }) => {
                       setTopP(radius / 100)
                     }}
@@ -103,6 +110,7 @@ function App() {
                     max="150"
                     className="slider"
                     id="myTempRange"
+                    defaultValue="80"
                     onChange={({ target: { value: radius } }) => {
                       setTemp(radius / 100)
                     }}
@@ -130,7 +138,10 @@ function App() {
           {resultText && !isLoading && (
             <div className="result-section">
               <h3 className="result-title">Result</h3>
-              <div className="result-text">{resultText}</div>
+              <div className="result-text">
+                <span className="prompt-in-result">{promptInResult}</span>
+                {resultText}
+              </div>
             </div>
           )}
         </div>
