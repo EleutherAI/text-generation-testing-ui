@@ -263,6 +263,10 @@ h2.page-title {
   margin-top: 1.2em;
 }
 
+.send-result-button {
+  text-align: center;
+}
+
 footer {
   margin-top: 6em;
 }

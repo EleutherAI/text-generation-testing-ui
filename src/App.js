@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import "./App.css"
 
 import Loader from "./components/Loader"
@@ -20,7 +20,7 @@ function App() {
     setIsLoading(false)
   }, [])
 
-  const onClickSendPromptButton = (text = "eleuther", topP, temp) => {
+  const onClickSendPromptButton = useCallback((promptText = "eleuther", topP, temp) => {
     setIsLoading(true)
     fetch(endpoint, {
       method: "POST",
@@ -28,7 +28,7 @@ function App() {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        context: text.trim(),
+        context: promptText.trim(),
         top_p: topP,
         temp: temp
       })
@@ -52,7 +52,22 @@ function App() {
         console.error("Error:", error)
         setErrorText("Unable to connect to the model. Please try again.")
       })
-  }
+  }, [])
+
+  useEffect(() => {
+    function handleKeyDown(e) {
+      if (e.keyCode === 13 && promptText.length > 0) {
+        console.log("pressed enter")
+        onClickSendPromptButton(promptText, topP, temp)
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyDown)
+
+    return function cleanup() {
+      window.removeEventListener("keydown", handleKeyDown)
+    }
+  }, [onClickSendPromptButton, topP, temp, promptText])
 
   return (
     <div className="App">
@@ -81,6 +96,7 @@ function App() {
               <textarea
                 className="prompt-textarea"
                 placeholder="Write some prompt..."
+                rows="3"
                 onChange={evt => setPromptText(evt.currentTarget.value)}></textarea>
             </div>
             <div className="model-controls">
@@ -121,7 +137,8 @@ function App() {
             </div>
             <div className="button-container">
               <button
-                onClick={() => {
+                onClick={e => {
+                  e.preventDefault()
                   onClickSendPromptButton(promptText, topP, temp)
                 }}
                 className="button-primary">
@@ -142,6 +159,15 @@ function App() {
                 <span className="prompt-in-result">{promptInResult}</span>
                 {resultText}
               </div>
+              {!resultText && (
+                <div className="send-result-button">
+                  <button
+                    className="button-primary"
+                    onClick={() => onClickSendPromptButton(promptText + " " + resultText, topP, temp)}>
+                    Send result as prompt
+                  </button>
+                </div>
+              )}
             </div>
           )}
         </div>
