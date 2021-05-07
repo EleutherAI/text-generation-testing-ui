@@ -159,7 +159,7 @@ function App() {
                 <span className="prompt-in-result">{promptInResult}</span>
                 {resultText}
               </div>
-              {!resultText && (
+              {resultText && (
                 <div className="send-result-button">
                   <button
                     className="button-primary"
