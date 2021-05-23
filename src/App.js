@@ -5,8 +5,8 @@ import Loader from "./components/Loader"
 
 function App() {
   const [promptText, setPromptText] = useState("")
-  const [topP, setTopP] = useState(0.8)
-  const [temp, setTemp] = useState(0.8)
+  const [topP, setTopP] = useState(0.9)
+  const [temp, setTemp] = useState(1.0)
   const [resultText, setResultText] = useState("")
   const [promptInResult, setPromptInResult] = useState("")
   const [isLoading, setIsLoading] = useState(false)
@@ -86,7 +86,7 @@ function App() {
           <h2 className="page-title">TEST EAI LANGUAGE MODELS</h2>
           <div className="model-choice-section">
             <span className="model-text">MODEL: </span>
-            <span className="model-name">GPT-NEO 1.2B</span>
+            <span className="model-name">GPT-J-6B</span>
             <span className="model-icon">
               <img src="img/eai_brain.svg" alt="model icon" />
             </span>
@@ -109,7 +109,7 @@ function App() {
                     max="100"
                     className="slider"
                     id="myTopPRange"
-                    defaultValue="80"
+                    defaultValue="90"
                     onChange={({ target: { value: radius } }) => {
                       setTopP(radius / 100)
                     }}
@@ -126,7 +126,7 @@ function App() {
                     max="150"
                     className="slider"
                     id="myTempRange"
-                    defaultValue="80"
+                    defaultValue="100"
                     onChange={({ target: { value: radius } }) => {
                       setTemp(radius / 100)
                     }}
