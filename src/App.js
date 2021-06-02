@@ -11,6 +11,7 @@ function App() {
   const [promptInResult, setPromptInResult] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const [errorText, setErrorText] = useState("")
+  const [count, setCount] = useState(0)
 
   const endpoint = "https://vm.eleuther.ai/complete"
 
@@ -22,6 +23,7 @@ function App() {
 
   const onClickSendPromptButton = useCallback((promptText = "eleuther", topP, temp) => {
     setIsLoading(true)
+    setCount(count + 1)
     fetch(endpoint, {
       method: "POST",
       headers: {
@@ -52,7 +54,7 @@ function App() {
         console.error("Error:", error)
         setErrorText("Unable to connect to the model. Please try again.")
       })
-  }, [])
+  }, [count])
 
   useEffect(() => {
     function handleKeyDown(e) {
@@ -154,12 +156,11 @@ function App() {
           </div>
           {isLoading && <Loader />}
           {errorText && !isLoading && <p className="error-text">{errorText}</p>}
-
           {resultText && !isLoading && (
             <div className="result-section">
               <h3 className="result-title">Result</h3>
               <div className="result-text">
-                <span className="prompt-in-result">{promptInResult}</span>
+                <span className={count < 2 ? "prompt-in-result-bold" : "prompt-in-result"}>{promptInResult}</span>
                 {resultText}
               </div>
               {resultText && (

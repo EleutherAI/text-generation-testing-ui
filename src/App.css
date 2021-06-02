@@ -263,9 +263,15 @@ h2.page-title {
 }
 
 .prompt-in-result {
+  font-weight: normal;
+  text-transform: capitalize;
+}
+
+.prompt-in-result-bold {
   font-weight: bold;
   text-transform: capitalize;
 }
+
 .result-text {
   font-size: 1em;
   font-weight: 400;
