@@ -150,18 +150,28 @@ h1.logo {
 }
 
 .main {
-  padding-top: 1.5em;
+  padding-top: 0em;
 }
 
 h2.page-title {
   font-size: 1.4em;
   text-align: center;
-  margin: 1.2em 0 2em 0;
+  margin: 1.2em 0 1.5em 0;
+}
+
+.link {
+  color: var(--blue);
+  text-decoration: underline;
+  font-size: 1em;
+}
+
+.link:hover {
+  color: var(--grey);
 }
 
 .model-choice-section {
-  margin: 1.2em 0;
-  font-size: 1em;
+  margin: 0.8em 0;
+  font-size: 0.9em;
 }
 
 .model-name {
@@ -172,12 +182,12 @@ h2.page-title {
   position: relative;
   left: 0.4em;
   top: 0.2em;
-  width: 18px;
-  height: 18px;
+  width: 14px;
+  height: 14px;
 }
 
 .form-container {
-  margin: 2.5em 0em 1.5em 0em;
+  margin: 3.4em 0em 1.5em 0em;
 }
 
 .prompt-input textarea {

@@ -91,12 +91,15 @@ function App() {
               <img src="img/eai_brain.svg" alt="model icon" />
             </span>
           </div>
+          <div className="model-choice-section">
+            <span className="model-link"><a className="link" href="https://gist.github.com/kingoflolz/a441d9c71cceb60bd249f525f23dde7f#acknowledgments">Model on Github</a></span>
+          </div>
           <div className="form-container">
             <div className="prompt-input">
               <textarea
                 className="prompt-textarea"
                 placeholder="Write some prompt..."
-                rows="3"
+                rows= {promptText.length ? 3 + Math.round(promptText.length / 100) : 3 }
                 onChange={evt => setPromptText(evt.currentTarget.value)}></textarea>
             </div>
             <div className="model-controls">
