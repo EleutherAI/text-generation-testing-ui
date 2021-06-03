@@ -21,40 +21,43 @@ function App() {
     setIsLoading(false)
   }, [])
 
-  const onClickSendPromptButton = useCallback((promptText = "eleuther", topP, temp) => {
-    setIsLoading(true)
-    setCount(count + 1)
-    fetch(endpoint, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        context: promptText.trim(),
-        top_p: topP,
-        temp: temp
+  const onClickSendPromptButton = useCallback(
+    (promptText = "eleuther", topP, temp) => {
+      setIsLoading(true)
+      setCount(count + 1)
+      fetch(endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          context: promptText.trim(),
+          top_p: topP,
+          temp: temp
+        })
       })
-    })
-      .then(response => response.json())
-      .then(data => {
-        setIsLoading(false)
-        setErrorText("")
-        if (data && data.completion) {
-          let finalText = data.completion
-          if (finalText.search("<|endoftext|>") > -1) {
-            finalText = finalText.split("<|endoftext|>")[0]
-          }
+        .then(response => response.json())
+        .then(data => {
+          setIsLoading(false)
+          setErrorText("")
+          if (data && data.completion) {
+            let finalText = data.completion
+            if (finalText.search("<|endoftext|>") > -1) {
+              finalText = finalText.split("<|endoftext|>")[0]
+            }
 
-          setPromptInResult(promptText)
-          setResultText(finalText)
-        }
-      })
-      .catch(error => {
-        setIsLoading(false)
-        console.error("Error:", error)
-        setErrorText("Unable to connect to the model. Please try again.")
-      })
-  }, [count])
+            setPromptInResult(promptText)
+            setResultText(finalText)
+          }
+        })
+        .catch(error => {
+          setIsLoading(false)
+          console.error("Error:", error)
+          setErrorText("Unable to connect to the model. Please try again.")
+        })
+    },
+    [count]
+  )
 
   useEffect(() => {
     function handleKeyDown(e) {
@@ -94,14 +97,20 @@ function App() {
             </span>
           </div>
           <div className="model-choice-section">
-            <span className="model-link"><a className="link" href="https://gist.github.com/kingoflolz/a441d9c71cceb60bd249f525f23dde7f#acknowledgments">Model on Github</a></span>
+            <span className="model-link">
+              <a
+                className="link"
+                href="https://gist.github.com/kingoflolz/a441d9c71cceb60bd249f525f23dde7f#acknowledgments">
+                Model on Github
+              </a>
+            </span>
           </div>
           <div className="form-container">
             <div className="prompt-input">
               <textarea
                 className="prompt-textarea"
                 placeholder="Write some prompt..."
-                rows= {promptText.length ? 3 + Math.round(promptText.length / 100) : 3 }
+                rows={promptText.length ? 3 + Math.round(promptText.length / 100) : 3}
                 onChange={evt => setPromptText(evt.currentTarget.value)}></textarea>
             </div>
             <div className="model-controls">
