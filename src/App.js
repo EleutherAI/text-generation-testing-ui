@@ -11,6 +11,7 @@ function App() {
   const [promptInResult, setPromptInResult] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const [errorText, setErrorText] = useState("")
+  const [count, setCount] = useState(0)
 
   const endpoint = "https://vm.eleuther.ai/complete"
 
@@ -20,39 +21,43 @@ function App() {
     setIsLoading(false)
   }, [])
 
-  const onClickSendPromptButton = useCallback((promptText = "eleuther", topP, temp) => {
-    setIsLoading(true)
-    fetch(endpoint, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        context: promptText.trim(),
-        top_p: topP,
-        temp: temp
+  const onClickSendPromptButton = useCallback(
+    (promptText = "eleuther", topP, temp) => {
+      setIsLoading(true)
+      setCount(count + 1)
+      fetch(endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          context: promptText.trim(),
+          top_p: topP,
+          temp: temp
+        })
       })
-    })
-      .then(response => response.json())
-      .then(data => {
-        setIsLoading(false)
-        setErrorText("")
-        if (data && data.completion) {
-          let finalText = data.completion
-          if (finalText.search("<|endoftext|>") > -1) {
-            finalText = finalText.split("<|endoftext|>")[0]
-          }
+        .then(response => response.json())
+        .then(data => {
+          setIsLoading(false)
+          setErrorText("")
+          if (data && data.completion) {
+            let finalText = data.completion
+            if (finalText.search("<|endoftext|>") > -1) {
+              finalText = finalText.split("<|endoftext|>")[0]
+            }
 
-          setPromptInResult(promptText)
-          setResultText(finalText)
-        }
-      })
-      .catch(error => {
-        setIsLoading(false)
-        console.error("Error:", error)
-        setErrorText("Unable to connect to the model. Please try again.")
-      })
-  }, [])
+            setPromptInResult(promptText)
+            setResultText(finalText)
+          }
+        })
+        .catch(error => {
+          setIsLoading(false)
+          console.error("Error:", error)
+          setErrorText("Unable to connect to the model. Please try again.")
+        })
+    },
+    [count]
+  )
 
   useEffect(() => {
     function handleKeyDown(e) {
@@ -91,12 +96,21 @@ function App() {
               <img src="img/eai_brain.svg" alt="model icon" />
             </span>
           </div>
+          <div className="model-choice-section">
+            <span className="model-link">
+              <a
+                className="link"
+                href="https://gist.github.com/kingoflolz/a441d9c71cceb60bd249f525f23dde7f#acknowledgments">
+                Model on Github
+              </a>
+            </span>
+          </div>
           <div className="form-container">
             <div className="prompt-input">
               <textarea
                 className="prompt-textarea"
                 placeholder="Write some prompt..."
-                rows="3"
+                rows={promptText.length ? 3 + Math.round(promptText.length / 100) : 3}
                 onChange={evt => setPromptText(evt.currentTarget.value)}></textarea>
             </div>
             <div className="model-controls">
@@ -151,12 +165,11 @@ function App() {
           </div>
           {isLoading && <Loader />}
           {errorText && !isLoading && <p className="error-text">{errorText}</p>}
-
           {resultText && !isLoading && (
             <div className="result-section">
               <h3 className="result-title">Result</h3>
               <div className="result-text">
-                <span className="prompt-in-result">{promptInResult}</span>
+                <span className={count < 2 ? "prompt-in-result-bold" : "prompt-in-result"}>{promptInResult}</span>
                 {resultText}
               </div>
               {resultText && (
