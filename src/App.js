@@ -13,7 +13,7 @@ function App() {
   const [errorText, setErrorText] = useState("")
   const [count, setCount] = useState(0)
 
-  const endpoint = "https://vm.eleuther.ai/complete"
+  const endpoint = "https://api.eleuther.ai/complete"
 
   useEffect(() => {
     setResultText("")
@@ -100,7 +100,7 @@ function App() {
             <span className="model-link">
               <a
                 className="link"
-                href="https://gist.github.com/kingoflolz/a441d9c71cceb60bd249f525f23dde7f#acknowledgments">
+                href="https://github.com/kingoflolz/mesh-transformer-jax/#gpt-j-6b">
                 Model on Github
               </a>
             </span>
