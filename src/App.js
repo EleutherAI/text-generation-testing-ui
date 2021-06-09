@@ -98,9 +98,7 @@ function App() {
           </div>
           <div className="model-choice-section">
             <span className="model-link">
-              <a
-                className="link"
-                href="https://github.com/kingoflolz/mesh-transformer-jax/#gpt-j-6b">
+              <a className="link" href="https://github.com/kingoflolz/mesh-transformer-jax/#gpt-j-6b">
                 Model on Github
               </a>
             </span>
@@ -136,7 +134,7 @@ function App() {
                 <p>
                   <input
                     type="range"
-                    min="50"
+                    min="0"
                     max="150"
                     className="slider"
                     id="myTempRange"
