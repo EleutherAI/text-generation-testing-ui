@@ -17,36 +17,6 @@
   }
 }
 
-/* .slider {
-  -webkit-appearance: none;
-  width: 100%;
-  height: 15px;
-  border-radius: 5px;
-  background: #d3d3d3;
-  outline: none;
-  opacity: 0.7;
-  -webkit-transition: 0.2s;
-  transition: opacity 0.2s;
-}
-
-.slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  background: #4caf50;
-  cursor: pointer;
-}
-
-.slider::-moz-range-thumb {
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  background: #4caf50;
-  cursor: pointer;
-} */
-
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,700;1,900&display=swap");
 
 :root {
@@ -151,6 +121,107 @@ h1.logo {
 
 .main {
   padding-top: 0em;
+}
+
+.top-content {
+  display: flex;
+}
+
+.right-top {
+  margin-left: auto;
+  /* width: 30%; */
+}
+
+.prompt-list-button {
+  background-color: transparent;
+  padding: 0.4em 2em;
+  font-size: 0.92em;
+  color: var(--blue);
+  border: 1px solid var(--blue);
+  cursor: pointer;
+  text-align: center;
+  position: relative;
+  text-indent: -20px;
+}
+
+.prompt-list-button:hover {
+  opacity: 0.7;
+}
+
+.prompt-list-button-icon {
+  position: absolute;
+  right: 5px;
+}
+
+.description-text {
+  font-size: 11px;
+  font-style: italic;
+  margin-top: 6px;
+  width: 130px;
+}
+
+.prompt-list-overlay {
+  width: 100%;
+  position: absolute;
+  z-index: 7;
+  top: 30px;
+}
+
+.prompt-head-title {
+  text-align: center;
+}
+
+.close-icon {
+  background-color: transparent;
+  border: 0px none;
+  cursor: pointer;
+  position: absolute;
+  top: 4px;
+  right: 3px;
+  width: 25px;
+}
+
+.close-icon:hover {
+  opacity: 0.8;
+}
+
+.prompt-list-container {
+  background-color: var(--white);
+  max-width: 50%;
+  top: 20px;
+  position: relative;
+  border: 1px solid var(--grey2);
+  padding: 0.3em 0.6em;
+  margin: 0 auto;
+  box-shadow: 0 3px 10px rgb(34 25 25 / 40%);
+}
+
+ul.prompt-list {
+  margin-top: 20px;
+  list-style-type: none;
+  overflow-y: auto;
+  height: 400px;
+}
+
+ul.prompt-list li {
+  margin-bottom: 10px;
+  margin-top: 5px;
+  color: var(--blue);
+  cursor: pointer;
+  padding: 10px 0px;
+  font-size: 13px;
+  font-weight: bold;
+  border-bottom: 1px dashed var(--blue);
+}
+
+ul.prompt-list .item-link {
+  font-size: 9px;
+  color: #444444;
+  margin-bottom: 5px;
+}
+
+ul.prompt-list li:hover {
+  color: var(--grey);
 }
 
 h2.page-title {
@@ -305,8 +376,11 @@ footer {
 /* ------ RESPONSIVE STYLES ------ */
 
 /* Phone */
-/* @media (min-width: 450px) {
-} */
+@media (max-width: 450px) {
+  .prompt-list-container {
+    max-width: 80%;
+  }
+}
 
 /* Tablet */
 /* @media (max-width: 769px) {

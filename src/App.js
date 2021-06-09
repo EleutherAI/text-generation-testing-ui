@@ -2,6 +2,8 @@ import { useState, useEffect, useCallback } from "react"
 import "./App.css"
 
 import Loader from "./components/Loader"
+import PromptList from "./components/PromptList"
+import ClassicPrompts from "./data/classicPrompts"
 
 function App() {
   const [promptText, setPromptText] = useState("")
@@ -12,6 +14,8 @@ function App() {
   const [isLoading, setIsLoading] = useState(false)
   const [errorText, setErrorText] = useState("")
   const [count, setCount] = useState(0)
+  const [insertPrompt, setInsertPrompt] = useState("")
+  const [showPromptList, setShowPromptList] = useState(false)
 
   const endpoint = "https://api.eleuther.ai/complete"
 
@@ -20,6 +24,12 @@ function App() {
     setErrorText("")
     setIsLoading(false)
   }, [])
+
+  useEffect(() => {
+    if (insertPrompt) {
+      setPromptText(insertPrompt)
+    }
+  }, [insertPrompt])
 
   const onClickSendPromptButton = useCallback(
     (promptText = "eleuther", topP, temp) => {
@@ -87,31 +97,49 @@ function App() {
         </div>
       </header>
       <div className="main">
+        {showPromptList && (
+          <PromptList close={() => setShowPromptList(false)} data={ClassicPrompts} selectItem={setInsertPrompt} />
+        )}
+        <h2 className="page-title">TEST EAI LANGUAGE MODELS</h2>
+        <div className="content-wrapper narrow top-content">
+          <div className="left-top">
+            <div className="model-choice-section">
+              <span className="model-text">MODEL: </span>
+              <span className="model-name">GPT-J-6B</span>
+              <span className="model-icon">
+                <img src="img/eai_brain.svg" alt="model icon" />
+              </span>
+            </div>
+            <div className="model-choice-section">
+              <span className="model-link">
+                <a className="link" href="https://github.com/kingoflolz/mesh-transformer-jax/#gpt-j-6b">
+                  Model on Github
+                </a>
+              </span>
+            </div>
+          </div>
+          <div className="right-top">
+            <button className="prompt-list-button" onClick={() => setShowPromptList(true)}>
+              Prompt List
+              <span className="prompt-list-button-icon">
+                <img src="img/prompt_list.svg" alt="Prompt List Icon" />
+              </span>
+            </button>
+            <p className="description-text">Try a classic prompt evaluated on other models </p>
+          </div>
+        </div>
         <div className="content-wrapper narrow">
-          <h2 className="page-title">TEST EAI LANGUAGE MODELS</h2>
-          <div className="model-choice-section">
-            <span className="model-text">MODEL: </span>
-            <span className="model-name">GPT-J-6B</span>
-            <span className="model-icon">
-              <img src="img/eai_brain.svg" alt="model icon" />
-            </span>
-          </div>
-          <div className="model-choice-section">
-            <span className="model-link">
-              <a
-                className="link"
-                href="https://github.com/kingoflolz/mesh-transformer-jax/#gpt-j-6b">
-                Model on Github
-              </a>
-            </span>
-          </div>
           <div className="form-container">
             <div className="prompt-input">
               <textarea
                 className="prompt-textarea"
                 placeholder="Write some prompt..."
                 rows={promptText.length ? 3 + Math.round(promptText.length / 100) : 3}
-                onChange={evt => setPromptText(evt.currentTarget.value)}></textarea>
+                value={insertPrompt || promptText}
+                onChange={evt => {
+                  setInsertPrompt("")
+                  setPromptText(evt.currentTarget.value)
+                }}></textarea>
             </div>
             <div className="model-controls">
               <div className="slider-container">
@@ -136,7 +164,7 @@ function App() {
                 <p>
                   <input
                     type="range"
-                    min="50"
+                    min="0"
                     max="150"
                     className="slider"
                     id="myTempRange"
