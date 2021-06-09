@@ -61,7 +61,7 @@ function App() {
 
   useEffect(() => {
     function handleKeyDown(e) {
-      if (e.keyCode === 13 && promptText.length > 0) {
+      if (e.shiftKey && e.keyCode === 13 && promptText.length > 0) {
         console.log("pressed enter")
         onClickSendPromptButton(promptText, topP, temp)
       }
