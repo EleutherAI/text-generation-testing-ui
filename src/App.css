@@ -201,6 +201,7 @@ ul.prompt-list {
   list-style-type: none;
   overflow-y: auto;
   height: 400px;
+  padding-right: 0.6em;
 }
 
 ul.prompt-list li {
