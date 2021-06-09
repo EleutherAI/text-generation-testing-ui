@@ -32,16 +32,18 @@ function App() {
   }, [insertPrompt])
 
   const onClickSendPromptButton = useCallback(
-    (promptText = "eleuther", topP, temp) => {
+    (extraText, topP, temp) => {
       setIsLoading(true)
-      setCount(count + 1)
+      // setCount(count + 1)
+      let fullPrompt = promptText
+      if (extraText != "") fullPrompt = fullPrompt + extraText
       fetch(endpoint, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          context: promptText.trim(),
+          context: fullPrompt.trim(),
           top_p: topP,
           temp: temp
         })
@@ -57,7 +59,11 @@ function App() {
             }
 
             setPromptInResult(promptText)
-            setResultText(finalText)
+
+            let combinedResult = ""
+            if (extraText != "") combinedResult = extraText
+            combinedResult = combinedResult + finalText
+            setResultText(combinedResult)
           }
         })
         .catch(error => {
@@ -66,7 +72,7 @@ function App() {
           setErrorText("Unable to connect to the model. Please try again.")
         })
     },
-    [count]
+    [count, promptText]
   )
 
   useEffect(() => {
@@ -181,7 +187,7 @@ function App() {
               <button
                 onClick={e => {
                   e.preventDefault()
-                  onClickSendPromptButton(promptText, topP, temp)
+                  onClickSendPromptButton("", topP, temp)
                 }}
                 className="button-primary">
                 Run the model!
@@ -202,9 +208,7 @@ function App() {
               </div>
               {resultText && (
                 <div className="send-result-button">
-                  <button
-                    className="button-primary"
-                    onClick={() => onClickSendPromptButton(promptText + " " + resultText, topP, temp)}>
+                  <button className="button-primary" onClick={() => onClickSendPromptButton(resultText, topP, temp)}>
                     Send result as prompt
                   </button>
                 </div>
