@@ -36,7 +36,7 @@ function App() {
       setIsLoading(true)
       // setCount(count + 1)
       let fullPrompt = promptText
-      if (extraText != "") fullPrompt = fullPrompt + extraText
+      if (extraText !== "") fullPrompt = fullPrompt + extraText
       fetch(endpoint, {
         method: "POST",
         headers: {
@@ -61,7 +61,7 @@ function App() {
             setPromptInResult(promptText)
 
             let combinedResult = ""
-            if (extraText != "") combinedResult = extraText
+            if (extraText !== "") combinedResult = extraText
             combinedResult = combinedResult + finalText
             setResultText(combinedResult)
           }
@@ -72,7 +72,7 @@ function App() {
           setErrorText("Unable to connect to the model. Please try again.")
         })
     },
-    [count, promptText]
+    [promptText]
   )
 
   useEffect(() => {
