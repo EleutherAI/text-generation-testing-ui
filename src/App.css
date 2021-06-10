@@ -317,6 +317,11 @@ h2.page-title {
   opacity: 0.7;
 }
 
+.button-primary:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+
 .button-icon {
   position: relative;
   left: 0.4em;

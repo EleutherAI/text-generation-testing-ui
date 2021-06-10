@@ -13,7 +13,6 @@ function App() {
   const [promptInResult, setPromptInResult] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const [errorText, setErrorText] = useState("")
-  const [count, setCount] = useState(0)
   const [insertPrompt, setInsertPrompt] = useState("")
   const [showPromptList, setShowPromptList] = useState(false)
 
@@ -187,8 +186,9 @@ function App() {
               <button
                 onClick={e => {
                   e.preventDefault()
-                  onClickSendPromptButton("", topP, temp)
+                  if (!isLoading) onClickSendPromptButton("", topP, temp)
                 }}
+                disabled={!!isLoading || !promptText.length}
                 className="button-primary">
                 Run the model!
                 <span className="button-icon">
@@ -203,12 +203,15 @@ function App() {
             <div className="result-section">
               <h3 className="result-title">Result</h3>
               <div className="result-text">
-                <span className={count < 2 ? "prompt-in-result-bold" : "prompt-in-result"}>{promptInResult}</span>
+                <span className="prompt-in-result-bold">{promptInResult}</span>
                 {resultText}
               </div>
               {resultText && (
                 <div className="send-result-button">
-                  <button className="button-primary" onClick={() => onClickSendPromptButton(resultText, topP, temp)}>
+                  <button
+                    className="button-primary"
+                    disabled={!!isLoading}
+                    onClick={() => onClickSendPromptButton(resultText, topP, temp)}>
                     Send result as prompt
                   </button>
                 </div>
