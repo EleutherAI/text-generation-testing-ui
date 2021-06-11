@@ -1,6 +1,6 @@
 {
   "short_name": "text-generation-testing-ui",
-  "name": "Eleuther AI site for testing language models",
+  "name": "EleutherAI site for testing language models",
   "icons": [
     {
       "src": "favicon.ico",
