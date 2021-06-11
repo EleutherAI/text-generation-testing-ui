@@ -94,7 +94,7 @@ function App() {
       <header className="header-container">
         <div className="content-wrapper row">
           <a href="https://www.eleuther.ai/">
-            <img id="logo" className="logo-image" src="img/eai_logo_small_exported.png" alt="Eleuther AI logo" />
+            <img id="logo" className="logo-image" src="img/eai_logo_small_exported.png" alt="EleutherAI logo" />
           </a>
           <h1 className="logo-text">
             <a href="/">EleutherAI</a>
@@ -221,7 +221,7 @@ function App() {
         </div>
       </div>
       <footer>
-        <div className="footer-content">Eleuther AI 2021</div>
+        <div className="footer-content">EleutherAI 2021</div>
       </footer>
     </div>
   )
