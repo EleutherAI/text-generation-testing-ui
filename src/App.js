@@ -107,7 +107,10 @@ function App() {
         {showPromptList && (
           <PromptList close={() => setShowPromptList(false)} data={ClassicPrompts} selectItem={setInsertPrompt} />
         )}
-        <h2 className="page-title">TEST EAI LANGUAGE MODELS</h2>
+        <h2 className="page-title">
+          {" "}
+          {!!process.env.REACT_APP_TITLE ? process.env.REACT_APP_TITLE : "TEST EAI LANGUAGE MODELS"}
+        </h2>
         <div className="content-wrapper narrow top-content">
           <div className="left-top">
             <div className="model-choice-section">
