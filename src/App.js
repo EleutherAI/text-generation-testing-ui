@@ -16,7 +16,9 @@ function App() {
   const [insertPrompt, setInsertPrompt] = useState("")
   const [showPromptList, setShowPromptList] = useState(false)
 
-  const endpoint = "https://api.eleuther.ai/complete"
+  const endpoint = !!process.env.REACT_APP_MODEL_ENDPOINT_URL
+    ? process.env.REACT_APP_MODEL_ENDPOINT_URL
+    : "https://api.eleuther.ai/complete"
 
   useEffect(() => {
     setResultText("")
@@ -71,7 +73,7 @@ function App() {
           setErrorText("Unable to connect to the model. Please try again.")
         })
     },
-    [promptText]
+    [promptText, endpoint]
   )
 
   useEffect(() => {
@@ -110,7 +112,9 @@ function App() {
           <div className="left-top">
             <div className="model-choice-section">
               <span className="model-text">MODEL: </span>
-              <span className="model-name">GPT-J-6B</span>
+              <span className="model-name">
+                {!!process.env.REACT_APP_MODEL_NAME ? process.env.REACT_APP_MODEL_NAME : "GPT-J-6B"}
+              </span>
               <span className="model-icon">
                 <img src="img/eai_brain.svg" alt="model icon" />
               </span>
