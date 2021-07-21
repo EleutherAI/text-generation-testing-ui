@@ -8,7 +8,7 @@ import ClassicPrompts from "./data/classicPrompts"
 function App() {
   const [promptText, setPromptText] = useState("")
   const [topP, setTopP] = useState(0.9)
-  const [temp, setTemp] = useState(1.0)
+  const [temp, setTemp] = useState(0.8)
   const [resultText, setResultText] = useState("")
   const [promptInResult, setPromptInResult] = useState("")
   const [isLoading, setIsLoading] = useState(false)
@@ -35,7 +35,6 @@ function App() {
   const onClickSendPromptButton = useCallback(
     (extraText, topP, temp) => {
       setIsLoading(true)
-      // setCount(count + 1)
       let fullPrompt = promptText
       if (extraText !== "") fullPrompt = fullPrompt + extraText
       fetch(endpoint, {
@@ -108,7 +107,6 @@ function App() {
           <PromptList close={() => setShowPromptList(false)} data={ClassicPrompts} selectItem={setInsertPrompt} />
         )}
         <h2 className="page-title">
-          {" "}
           {!!process.env.REACT_APP_TITLE ? process.env.REACT_APP_TITLE : "TEST EAI LANGUAGE MODELS"}
         </h2>
         <div className="content-wrapper narrow top-content">
@@ -130,15 +128,17 @@ function App() {
               </span>
             </div>
           </div>
-          <div className="right-top">
-            <button className="prompt-list-button" onClick={() => setShowPromptList(true)}>
-              Prompt List
-              <span className="prompt-list-button-icon">
-                <img src="img/prompt_list.svg" alt="Prompt List Icon" />
-              </span>
-            </button>
-            <p className="description-text">Try a classic prompt evaluated on other models </p>
-          </div>
+          {process.env.REACT_APP_PROMPT_SUGGESTIONS === "true" && (
+            <div className="right-top">
+              <button className="prompt-list-button" onClick={() => setShowPromptList(true)}>
+                Prompt List
+                <span className="prompt-list-button-icon">
+                  <img src="img/prompt_list.svg" alt="Prompt List Icon" />
+                </span>
+              </button>
+              <p className="description-text">Try a classic prompt evaluated on other models </p>
+            </div>
+          )}
         </div>
         <div className="content-wrapper narrow">
           <div className="form-container">
@@ -180,7 +180,7 @@ function App() {
                     max="150"
                     className="slider"
                     id="myTempRange"
-                    defaultValue="100"
+                    defaultValue="80"
                     onChange={({ target: { value: radius } }) => {
                       setTemp(radius / 100)
                     }}
