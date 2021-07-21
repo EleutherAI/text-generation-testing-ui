@@ -120,13 +120,15 @@ function App() {
                 <img src="img/eai_brain.svg" alt="model icon" />
               </span>
             </div>
-            <div className="model-choice-section">
-              <span className="model-link">
-                <a className="link" href="https://github.com/kingoflolz/mesh-transformer-jax/#gpt-j-6b">
-                  Model on Github
-                </a>
-              </span>
-            </div>
+            {process.env.REACT_APP_GITHUB_LINK === "true" && (
+              <div className="model-choice-section">
+                <span className="model-link">
+                  <a className="link" href="https://github.com/kingoflolz/mesh-transformer-jax/#gpt-j-6b">
+                    Model on Github
+                  </a>
+                </span>
+              </div>
+            )}
           </div>
           {process.env.REACT_APP_PROMPT_SUGGESTIONS === "true" && (
             <div className="right-top">
