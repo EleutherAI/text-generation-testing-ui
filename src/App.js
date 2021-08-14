@@ -16,10 +16,6 @@ function App() {
   const [insertPrompt, setInsertPrompt] = useState("")
   const [showPromptList, setShowPromptList] = useState(false)
 
-  const endpoint = !!process.env.REACT_APP_MODEL_ENDPOINT_URL
-    ? process.env.REACT_APP_MODEL_ENDPOINT_URL
-    : "https://api.eleuther.ai/complete"
-
   useEffect(() => {
     setResultText("")
     setErrorText("")
@@ -34,26 +30,46 @@ function App() {
 
   const onClickSendPromptButton = useCallback(
     (extraText, topP, temp) => {
+      const ENDPOINT = !!process.env.REACT_APP_MODEL_ENDPOINT_URL
+        ? process.env.REACT_APP_MODEL_ENDPOINT_URL
+        : ""
+
+      const API_KEY = !!process.env.REACT_APP_MODEL_API_KEY
+        ? process.env.REACT_APP_MODEL_API_KEY
+        : ""
+
+      const MODEL_ID = !!process.env.REACT_APP_MODEL_ID ? process.env.REACT_APP_MODEL_ID : ""
+      const finalUrl = !!process.env.REACT_APP_USE_PROXY
+        ? `https://cors-proxy-janko.herokuapp.com/${ENDPOINT}`
+        : ENDPOINT
+
       setIsLoading(true)
       let fullPrompt = promptText
       if (extraText !== "") fullPrompt = fullPrompt + extraText
-      fetch(endpoint, {
+      fetch(finalUrl, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${API_KEY}`
         },
         body: JSON.stringify({
-          context: fullPrompt.trim(),
-          top_p: topP,
-          temp: temp
+          data: fullPrompt.trim(),
+          modelId: MODEL_ID,
+          input_kwargs: {
+            top_p: topP,
+            temp: temp,
+            response_length: 300,
+            remove_input: false
+          }
         })
       })
         .then(response => response.json())
         .then(data => {
           setIsLoading(false)
           setErrorText("")
-          if (data && data.completion) {
-            let finalText = data.completion
+          if (data && data.result && data.result.length) {
+            let finalText = data.result[0]?.generated_text
             if (finalText.search("<|endoftext|>") > -1) {
               finalText = finalText.split("<|endoftext|>")[0]
             }
@@ -72,7 +88,7 @@ function App() {
           setErrorText("Unable to connect to the model. Please try again.")
         })
     },
-    [promptText, endpoint]
+    [promptText]
   )
 
   useEffect(() => {
