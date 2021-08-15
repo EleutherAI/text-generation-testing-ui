@@ -30,12 +30,8 @@ function App() {
 
   const onClickSendPromptButton = useCallback(
     (extraText, topP, temp) => {
-      const ENDPOINT = !!process.env.REACT_APP_MODEL_ENDPOINT_URL ? process.env.REACT_APP_MODEL_ENDPOINT_URL : ""
-
-      const API_KEY = !!process.env.REACT_APP_MODEL_API_KEY ? process.env.REACT_APP_MODEL_API_KEY : ""
-
-      const MODEL_ID = !!process.env.REACT_APP_MODEL_ID ? process.env.REACT_APP_MODEL_ID : ""
-      const finalUrl = !!process.env.REACT_APP_USE_PROXY
+      const ENDPOINT = !!process.env.REACT_APP_MODEL_ENDPOINT_URL ? process.env.REACT_APP_MODEL_ENDPOINT_URL : "http://localhost:8000/completion"
+      const finalUrl = process.env.REACT_APP_USE_PROXY === "true"
         ? `https://cors-proxy-janko.herokuapp.com/${ENDPOINT}`
         : ENDPOINT
 
@@ -46,12 +42,10 @@ function App() {
         method: "POST",
         headers: {
           Accept: "application/json",
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${API_KEY}`
+          "Content-Type": "application/json"
         },
         body: JSON.stringify({
           data: fullPrompt.trim(),
-          modelId: MODEL_ID,
           input_kwargs: {
             top_p: topP,
             temp: temp,
@@ -64,8 +58,8 @@ function App() {
         .then(data => {
           setIsLoading(false)
           setErrorText("")
-          if (data && data.result && data.result.length) {
-            let finalText = data.result[0]?.generated_text
+          if (data) {
+            let finalText = data[0]?.generated_text.substring(promptText.length)
             if (finalText.search("<|endoftext|>") > -1) {
               finalText = finalText.split("<|endoftext|>")[0]
             }
