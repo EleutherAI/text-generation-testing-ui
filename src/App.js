@@ -30,13 +30,9 @@ function App() {
 
   const onClickSendPromptButton = useCallback(
     (extraText, topP, temp) => {
-      const ENDPOINT = !!process.env.REACT_APP_MODEL_ENDPOINT_URL
-        ? process.env.REACT_APP_MODEL_ENDPOINT_URL
-        : ""
+      const ENDPOINT = !!process.env.REACT_APP_MODEL_ENDPOINT_URL ? process.env.REACT_APP_MODEL_ENDPOINT_URL : ""
 
-      const API_KEY = !!process.env.REACT_APP_MODEL_API_KEY
-        ? process.env.REACT_APP_MODEL_API_KEY
-        : ""
+      const API_KEY = !!process.env.REACT_APP_MODEL_API_KEY ? process.env.REACT_APP_MODEL_API_KEY : ""
 
       const MODEL_ID = !!process.env.REACT_APP_MODEL_ID ? process.env.REACT_APP_MODEL_ID : ""
       const finalUrl = !!process.env.REACT_APP_USE_PROXY
@@ -246,7 +242,14 @@ function App() {
         </div>
       </div>
       <footer>
-        <div className="footer-content">EleutherAI 2021</div>
+        <div className="content-wrapper">
+          <div className="footer-content">
+            <div className="footer-text-center">EleutherAI 2021</div>
+            <div className="footer-text-right">
+              Powered by <a href="https://www.getneuro.ai/">Neuro</a>
+            </div>
+          </div>
+        </div>
       </footer>
     </div>
   )

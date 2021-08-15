@@ -365,13 +365,20 @@ footer {
 }
 
 .footer-content {
-  text-align: center;
-  font-size: 0.6em;
+  font-size: 0.67em;
 }
 
-.footer-text a {
+.footer-text-center {
+  text-align: center;
+}
+
+.footer-text-right {
+  text-align: right;
+}
+
+.footer-content a {
   text-decoration: underline;
-  color: white;
+  color: var(--blue);
 }
 
 .error-text {
