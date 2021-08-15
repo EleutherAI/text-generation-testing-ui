@@ -45,13 +45,11 @@ function App() {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          data: fullPrompt.trim(),
-          input_kwargs: {
-            top_p: topP,
-            temp: temp,
-            response_length: 300,
-            remove_input: false
-          }
+          context: fullPrompt.trim(),
+          top_p: topP,
+          temp: temp,
+          response_length: 128,
+          remove_input: true
         })
       })
         .then(response => response.json())
@@ -59,7 +57,7 @@ function App() {
           setIsLoading(false)
           setErrorText("")
           if (data) {
-            let finalText = data[0]?.generated_text.substring(promptText.length)
+            let finalText = data[0]?.generated_text
             if (finalText.search("<|endoftext|>") > -1) {
               finalText = finalText.split("<|endoftext|>")[0]
             }
