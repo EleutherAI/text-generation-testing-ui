@@ -334,6 +334,16 @@ h2.page-title {
   padding: 0.75em 0;
 }
 
+.partner-promo-text {
+  margin-top: 20px;
+  font-size: 0.6em;
+}
+
+.partner-promo-text a {
+  text-decoration: underline;
+  color: var(--blue);
+}
+
 .result-title {
   margin-top: 1.5em;
   text-transform: uppercase;
@@ -370,10 +380,6 @@ footer {
 
 .footer-text-center {
   text-align: center;
-}
-
-.footer-text-right {
-  text-align: right;
 }
 
 .footer-content a {

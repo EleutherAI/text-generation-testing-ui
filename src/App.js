@@ -216,6 +216,9 @@ function App() {
                   <img src="img/lightning.svg" alt="lightning icon" />
                 </span>
               </button>
+              <div className="partner-promo-text">
+                Powered by <a href="https://hub.getneuro.ai/model/nlp/gpt-j-6B-text-generation">Neuro</a>
+              </div>
             </div>
           </div>
           {isLoading && <Loader />}
@@ -245,9 +248,6 @@ function App() {
         <div className="content-wrapper">
           <div className="footer-content">
             <div className="footer-text-center">EleutherAI 2021</div>
-            <div className="footer-text-right">
-              Powered by <a href="https://www.getneuro.ai/">Neuro</a>
-            </div>
           </div>
         </div>
       </footer>
