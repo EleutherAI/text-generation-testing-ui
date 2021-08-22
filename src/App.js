@@ -58,7 +58,7 @@ function App() {
           setIsLoading(false)
           setErrorText("")
           if (data) {
-            let finalText = data[0]?.generated_text
+            let finalText = data[0]?.generated_text || data?.completion // the second one is for old API
             if (finalText.search("<|endoftext|>") > -1) {
               finalText = finalText.split("<|endoftext|>")[0]
             }
