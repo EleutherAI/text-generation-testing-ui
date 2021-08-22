@@ -30,10 +30,11 @@ function App() {
 
   const onClickSendPromptButton = useCallback(
     (extraText, topP, temp) => {
-      const ENDPOINT = !!process.env.REACT_APP_MODEL_ENDPOINT_URL ? process.env.REACT_APP_MODEL_ENDPOINT_URL : "http://localhost:8000/completion"
-      const finalUrl = process.env.REACT_APP_USE_PROXY === "true"
-        ? `https://cors-proxy-janko.herokuapp.com/${ENDPOINT}`
-        : ENDPOINT
+      const ENDPOINT = !!process.env.REACT_APP_MODEL_ENDPOINT_URL
+        ? process.env.REACT_APP_MODEL_ENDPOINT_URL
+        : "http://localhost:8000/completion"
+      const finalUrl =
+        process.env.REACT_APP_USE_PROXY === "true" ? `https://cors-proxy-janko.herokuapp.com/${ENDPOINT}` : ENDPOINT
 
       setIsLoading(true)
       let fullPrompt = promptText
@@ -82,8 +83,7 @@ function App() {
   useEffect(() => {
     function handleKeyDown(e) {
       if (e.shiftKey && e.keyCode === 13 && promptText.length > 0) {
-        console.log("pressed enter")
-        onClickSendPromptButton(promptText, topP, temp)
+        onClickSendPromptButton("", topP, temp)
       }
     }
 
