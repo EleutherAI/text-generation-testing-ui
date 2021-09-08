@@ -1,9 +1,16 @@
 import { useState, useEffect, useCallback } from "react"
-import "./App.css"
 
+import Header from "./components/Header"
+import TopContent from "./components/TopContent"
+import Footer from "./components/Footer"
 import Loader from "./components/Loader"
+import PromptControls from "./components/PromptControls"
+import PromptTextbox from "./components/PromptTextbox"
 import PromptList from "./components/PromptList"
+import ResultSection from "./components/ResultSection"
 import ClassicPrompts from "./data/classicPrompts"
+
+import "./App.css"
 
 function App() {
   const [promptText, setPromptText] = useState("")
@@ -47,8 +54,8 @@ function App() {
         },
         body: JSON.stringify({
           context: fullPrompt.trim(),
-          top_p: topP,
-          temp: temp,
+          topP,
+          temp,
           response_length: 128,
           remove_input: true
         })
@@ -96,16 +103,7 @@ function App() {
 
   return (
     <div className="App">
-      <header className="header-container">
-        <div className="content-wrapper row">
-          <a href="https://www.eleuther.ai/">
-            <img id="logo" className="logo-image" src="img/eai_logo_small_exported.png" alt="EleutherAI logo" />
-          </a>
-          <h1 className="logo-text">
-            <a href="/">EleutherAI</a>
-          </h1>
-        </div>
-      </header>
+      <Header />
       <div className="main">
         {showPromptList && (
           <PromptList close={() => setShowPromptList(false)} data={ClassicPrompts} selectItem={setInsertPrompt} />
@@ -113,136 +111,40 @@ function App() {
         <h2 className="page-title">
           {!!process.env.REACT_APP_TITLE ? process.env.REACT_APP_TITLE : "TEST EAI LANGUAGE MODELS"}
         </h2>
-        <div className="content-wrapper narrow top-content">
-          <div className="left-top">
-            <div className="model-choice-section">
-              <span className="model-text">MODEL: </span>
-              <span className="model-name">
-                {!!process.env.REACT_APP_MODEL_NAME ? process.env.REACT_APP_MODEL_NAME : "GPT-J-6B"}
-              </span>
-              <span className="model-icon">
-                <img src="img/eai_brain.svg" alt="model icon" />
-              </span>
-            </div>
-            {process.env.REACT_APP_GITHUB_LINK === "true" && (
-              <div className="model-choice-section">
-                <span className="model-link">
-                  <a className="link" href="https://github.com/kingoflolz/mesh-transformer-jax/#gpt-j-6b">
-                    Model on Github
-                  </a>
-                </span>
-              </div>
-            )}
-          </div>
-          {process.env.REACT_APP_PROMPT_SUGGESTIONS === "true" && (
-            <div className="right-top">
-              <button className="prompt-list-button" onClick={() => setShowPromptList(true)}>
-                Prompt List
-                <span className="prompt-list-button-icon">
-                  <img src="img/prompt_list.svg" alt="Prompt List Icon" />
-                </span>
-              </button>
-              <p className="description-text">Try a classic prompt evaluated on other models </p>
-            </div>
-          )}
-        </div>
+        <TopContent toggleShowPromptList={setShowPromptList} />
         <div className="content-wrapper narrow">
           <div className="form-container">
-            <div className="prompt-input">
-              <textarea
-                className="prompt-textarea"
-                placeholder="Write some prompt..."
-                rows={promptText.length ? 3 + Math.round(promptText.length / 100) : 3}
-                value={insertPrompt || promptText}
-                onChange={evt => {
-                  setInsertPrompt("")
-                  setPromptText(evt.currentTarget.value)
-                }}></textarea>
-            </div>
-            <div className="model-controls">
-              <div className="slider-container">
-                <p className="slider-title">TOP-P</p>
-                <p>
-                  <input
-                    type="range"
-                    min="0"
-                    max="100"
-                    className="slider"
-                    id="myTopPRange"
-                    defaultValue="90"
-                    onChange={({ target: { value: radius } }) => {
-                      setTopP(radius / 100)
-                    }}
-                  />
-                </p>
-                <p className="slider-value">{topP}</p>
-              </div>
-              <div className="slider-container">
-                <p className="slider-title">Temperature</p>
-                <p>
-                  <input
-                    type="range"
-                    min="0"
-                    max="150"
-                    className="slider"
-                    id="myTempRange"
-                    defaultValue="80"
-                    onChange={({ target: { value: radius } }) => {
-                      setTemp(radius / 100)
-                    }}
-                  />
-                </p>
-                <p className="slider-value">{temp}</p>
-              </div>
-            </div>
-            <div className="button-container">
-              <button
-                onClick={e => {
-                  e.preventDefault()
-                  if (!isLoading) onClickSendPromptButton("", topP, temp)
-                }}
-                disabled={!!isLoading || !promptText.length}
-                className="button-primary">
-                Run the model!
-                <span className="button-icon">
-                  <img src="img/lightning.svg" alt="lightning icon" />
-                </span>
-              </button>
-              <div className="partner-promo-text">
-                Powered by <a href="https://hub.getneuro.ai/model/nlp/gpt-j-6B-text-generation">Neuro</a>
-              </div>
-            </div>
+            <PromptTextbox
+              setInsertPrompt={setInsertPrompt}
+              setPromptText={setPromptText}
+              insertPrompt={insertPrompt}
+              promptText={promptText}
+            />
+            <PromptControls
+              topP={topP}
+              temp={temp}
+              setTemp={setTemp}
+              setTopP={setTopP}
+              onClickSendPromptButton={onClickSendPromptButton}
+              isLoading={isLoading}
+              promptText={promptText}
+            />
           </div>
           {isLoading && <Loader />}
           {errorText && !isLoading && <p className="error-text">{errorText}</p>}
           {resultText && !isLoading && (
-            <div className="result-section">
-              <h3 className="result-title">Result</h3>
-              <div className="result-text">
-                <span className="prompt-in-result-bold">{promptInResult}</span>
-                {resultText}
-              </div>
-              {resultText && (
-                <div className="send-result-button">
-                  <button
-                    className="button-primary"
-                    disabled={!!isLoading}
-                    onClick={() => onClickSendPromptButton(resultText, topP, temp)}>
-                    Send result as prompt
-                  </button>
-                </div>
-              )}
-            </div>
+            <ResultSection
+              resultText={resultText}
+              promptInResult={promptInResult}
+              onClickSendPromptButton={onClickSendPromptButton}
+              topP={topP}
+              temp={temp}
+              isLoading={isLoading}
+            />
           )}
         </div>
       </div>
-      <footer>
-        <div className="content-wrapper">
-          <div className="footer-content">
-            <div className="footer-text-center">EleutherAI 2021</div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   )
 }

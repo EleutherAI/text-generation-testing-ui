@@ -1,71 +1,4 @@
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,700;1,900&display=swap");
-
-:root {
-  --black: #000000;
-  --white: #ffffff;
-  --green: #699f56;
-  --blue: #34566f;
-  --grey: #959595;
-  --grey2: #d8d8d8;
-  --red: #aa4926;
-  --orange: #cc7832;
-}
-
-body,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-ul,
-li,
-ol,
-td,
-tr,
-th,
-table,
-div,
-p {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-a {
-  text-decoration: none;
-  color: var(--black);
-}
-
-.bold {
-  font-weight: bold;
-}
-
-.centralize-text {
-  text-align: center;
-}
-
 body {
-  font-family: "Lato", sans-serif;
   font-size: 16px;
 }
 
@@ -106,6 +39,7 @@ h1.logo-text {
   left: 0.75em;
   top: 0.4em;
   color: var(--white);
+  font-family: "Eleuther", "Inter", sans-serif;
 }
 
 h1.logo-text a {
@@ -157,6 +91,7 @@ h1.logo {
   font-size: 11px;
   font-style: italic;
   margin-top: 6px;
+  font-weight: 200;
   width: 130px;
 }
 
@@ -187,7 +122,7 @@ h1.logo {
 
 .prompt-list-container {
   background-color: var(--white);
-  max-width: 50%;
+  max-width: 60%;
   top: 20px;
   position: relative;
   border: 1px solid var(--grey2);
@@ -226,9 +161,9 @@ ul.prompt-list li:hover {
 }
 
 h2.page-title {
-  font-size: 1.4em;
+  font-size: 1.2em;
   text-align: center;
-  margin: 1.2em 0 1.5em 0;
+  margin: 1.2em 0 1em 0;
 }
 
 .link {
@@ -259,29 +194,31 @@ h2.page-title {
 }
 
 .form-container {
-  margin: 3.4em 0em 1.5em 0em;
+  margin: 2em 0em 1.5em 0em;
+}
+
+.prompt-input {
+  text-align: center;
 }
 
 .prompt-input textarea {
   border: none;
   overflow: auto;
   outline: none;
-
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
-
   resize: none; /*remove the resize handle on the bottom right*/
-
-  border: 0px none;
-  border-bottom: 2px solid var(--grey2);
-  width: 100%;
+  border: 1px solid var(--grey2);
   font-family: "Lato", sans-serif;
   font-size: 1em;
+  padding: 0.4em;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .prompt-input textarea:focus {
-  border-bottom: 2px solid var(--blue);
+  border: 1px solid var(--blue);
 }
 
 .model-controls {
@@ -401,22 +338,10 @@ footer {
   }
 }
 
-/* Tablet */
-/* @media (max-width: 769px) {
-  .content-wrapper {
-    max-width: 769px;
-    width: 100%;
-  }
-
-  .image-content img {
-    width: 350px;
-  }
-} */
-
 /* Laptop */
 @media (min-width: 960px) {
   .content-wrapper {
-    max-width: 35em;
+    max-width: 45em;
   }
 }
 
@@ -424,7 +349,23 @@ footer {
 
 @media (min-width: 1140px) {
   .content-wrapper {
-    max-width: 45em;
+    max-width: 52em;
+  }
+
+  .prompt-input textarea {
+    width: 80%;
+  }
+}
+
+/* Desktop */
+
+@media (min-width: 1600px) {
+  .content-wrapper {
+    max-width: 70em;
+  }
+
+  .prompt-input textarea {
+    width: 80%;
   }
 }
 
