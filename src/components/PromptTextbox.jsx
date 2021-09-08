@@ -1,6 +1,8 @@
 import React from "react"
 import TextareaAutosize from "react-textarea-autosize"
 
+import "../styles/promptTextbox.scss"
+
 export default function PromptTextbox({ promptText, setInsertPrompt, setPromptText, insertPrompt }) {
   return (
     <div className="prompt-input">

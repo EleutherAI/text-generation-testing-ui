@@ -5,6 +5,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,700;1,900&display=swap");
 
+@import "styles/colors.scss";
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
@@ -15,17 +17,6 @@ body {
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
-}
-
-:root {
-  --black: #000000;
-  --white: #ffffff;
-  --green: #699f56;
-  --blue: #34566f;
-  --grey: #959595;
-  --grey2: #d8d8d8;
-  --red: #aa4926;
-  --orange: #cc7832;
 }
 
 body,
@@ -51,7 +42,7 @@ p {
 
 a {
   text-decoration: none;
-  color: var(--black);
+  color: $black;
 }
 
 .bold {

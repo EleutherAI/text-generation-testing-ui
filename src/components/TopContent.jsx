@@ -1,5 +1,7 @@
 import React from "react"
 
+import "../styles/topContent.scss"
+
 export default function TopContent({ toggleShowPromptList }) {
   return (
     <div className="content-wrapper narrow top-content">

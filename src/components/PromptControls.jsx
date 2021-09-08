@@ -1,5 +1,7 @@
 import React from "react"
 
+import "../styles/promptControls.scss"
+
 export default function PromptControls({
   topP,
   temp,

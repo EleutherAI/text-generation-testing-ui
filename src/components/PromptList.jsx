@@ -1,5 +1,7 @@
 import React from "react"
 
+import "../styles/promptList.scss"
+
 const PromptList = ({ close, data, selectItem }) => {
   return (
     <div className="prompt-list-overlay" onClick={close}>

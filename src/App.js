@@ -10,7 +10,7 @@ import PromptList from "./components/PromptList"
 import ResultSection from "./components/ResultSection"
 import ClassicPrompts from "./data/classicPrompts"
 
-import "./App.css"
+import "./App.scss"
 
 function App() {
   const [promptText, setPromptText] = useState("")

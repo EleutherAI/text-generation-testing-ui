@@ -1,0 +1,129 @@
+@import "styles/colors.scss";
+
+body {
+  font-size: 16px;
+}
+
+.content-wrapper {
+  margin: 0 auto;
+  padding: 0 0.5em;
+  max-width: 40em;
+  overflow-y: hidden;
+}
+
+.row {
+  display: flex;
+}
+
+.main {
+  padding-top: 0em;
+}
+
+h2.page-title {
+  font-size: 1.2em;
+  text-align: center;
+  margin: 1.2em 0 1em 0;
+}
+
+.link {
+  color: $blue;
+  text-decoration: underline;
+  font-size: 1em;
+}
+
+.link:hover {
+  color: $grey;
+}
+
+.form-container {
+  margin: 2em 0em 1.5em 0em;
+}
+
+.button-container {
+  text-align: center;
+}
+
+.button-primary {
+  background-color: transparent;
+  padding: 0.4em 1em;
+  font-size: 1.1em;
+  color: $blue;
+  border: 1px solid $blue;
+  cursor: pointer;
+}
+
+.button-primary:hover {
+  opacity: 0.7;
+}
+
+.button-primary:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+
+.button-icon {
+  position: relative;
+  left: 0.4em;
+  top: 0.1em;
+}
+
+.button-container .footer-container {
+  margin-top: 2em;
+  background-color: $grey;
+  padding: 0.75em 0;
+}
+
+.partner-promo-text {
+  margin-top: 20px;
+  font-size: 0.6em;
+}
+
+.partner-promo-text a {
+  text-decoration: underline;
+  color: $blue;
+}
+
+.error-text {
+  text-align: center;
+  color: red;
+}
+
+/* ------ RESPONSIVE STYLES ------ */
+
+/* Phone */
+@media (max-width: 450px) {
+  .prompt-list-container {
+    max-width: 80%;
+  }
+}
+
+/* Laptop */
+@media (min-width: 960px) {
+  .content-wrapper {
+    max-width: 45em;
+  }
+}
+
+/* Desktop */
+
+@media (min-width: 1140px) {
+  .content-wrapper {
+    max-width: 52em;
+  }
+
+  .prompt-input textarea {
+    width: 90%;
+  }
+}
+
+/* Desktop */
+
+@media (min-width: 1600px) {
+  .content-wrapper {
+    max-width: 70em;
+  }
+
+  .prompt-input textarea {
+    width: 80%;
+  }
+}

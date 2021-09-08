@@ -1,0 +1,56 @@
+@import "../styles/colors.scss";
+
+.top-content {
+  display: flex;
+}
+
+.right-top {
+  margin-left: auto;
+  /* width: 30%; */
+}
+
+.prompt-list-button {
+  background-color: transparent;
+  padding: 0.4em 2em;
+  font-size: 0.92em;
+  color: $blue;
+  border: 1px solid $blue;
+  cursor: pointer;
+  text-align: center;
+  position: relative;
+  text-indent: -20px;
+}
+
+.prompt-list-button:hover {
+  opacity: 0.7;
+}
+
+.prompt-list-button-icon {
+  position: absolute;
+  right: 5px;
+}
+
+.description-text {
+  font-size: 11px;
+  font-style: italic;
+  margin-top: 6px;
+  font-weight: 200;
+  width: 130px;
+}
+
+.model-choice-section {
+  margin: 0.8em 0;
+  font-size: 0.9em;
+}
+
+.model-name {
+  font-weight: bold;
+}
+
+.model-icon img {
+  position: relative;
+  left: 0.4em;
+  top: 0.2em;
+  width: 14px;
+  height: 14px;
+}

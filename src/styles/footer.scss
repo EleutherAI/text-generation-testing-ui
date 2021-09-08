@@ -1,0 +1,18 @@
+@import "../styles/colors.scss";
+
+footer {
+  margin-top: 6em;
+}
+
+.footer-content {
+  font-size: 0.67em;
+}
+
+.footer-text-center {
+  text-align: center;
+}
+
+.footer-content a {
+  text-decoration: underline;
+  color: $blue;
+}

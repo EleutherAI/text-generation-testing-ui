@@ -3172,7 +3172,7 @@
   optionalDependencies:
     "fsevents" "^1.2.7"
 
-"chokidar@^3.4.1":
+"chokidar@^3.4.1", "chokidar@>=3.0.0 <4.0.0":
   "integrity" "sha512-9+s+Od+W0VJJzawDma/gvBNQqkTiqYTWLuZoyAsivsI4AaWTCzHG06/TMjsf1cYe9Cb97UCEhjz7HvnPk2p/tw=="
   "resolved" "https://registry.npmjs.org/chokidar/-/chokidar-3.5.1.tgz"
   "version" "3.5.1"
@@ -9760,6 +9760,13 @@
     "neo-async" "^2.6.2"
     "schema-utils" "^3.0.0"
     "semver" "^7.3.2"
+
+"sass@^1.3.0", "sass@^1.39.0":
+  "integrity" "sha512-F4o+RhJkNOIG0b6QudYU8c78ZADKZjKDk5cyrf8XTKWfrgbtyVVXImFstJrc+1pkQDCggyidIOytq6gS4gCCZg=="
+  "resolved" "https://registry.npmjs.org/sass/-/sass-1.39.0.tgz"
+  "version" "1.39.0"
+  dependencies:
+    "chokidar" ">=3.0.0 <4.0.0"
 
 "sax@~1.2.4":
   "integrity" "sha512-NqVDv9TpANUjFm0N8uM5GxL36UgKi9/atZw+x7YFnQ8ckwFGKrl4xX4yWtrey3UJm5nP1kUbnYgLopqWNSRhWw=="

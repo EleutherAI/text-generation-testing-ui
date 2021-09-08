@@ -1,5 +1,7 @@
 import React from "react"
 
+import "../styles/resultSection.scss"
+
 export default function ResultSection({ resultText, promptInResult, onClickSendPromptButton, topP, temp, isLoading }) {
   return (
     <div className="result-section">
