@@ -5,10 +5,14 @@ body {
   color: $black;
 }
 
+#root {
+  height: 100%;
+}
+
 .App {
   background-color: $white;
   color: $black;
-  height: 100vh;
+  height: 100%;
 }
 
 .App.dark {
