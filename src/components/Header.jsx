@@ -2,16 +2,24 @@ import React from "react"
 
 import "../styles/header.scss"
 
-export default function Header() {
+export default function Header({ toggleDarkMode, isDarkMode }) {
   return (
     <header className="header-container">
       <div className="content-wrapper row">
-        <a href="https://www.eleuther.ai/">
-          <img id="logo" className="logo-image" src="img/eai_logo_small_exported.png" alt="EleutherAI logo" />
-        </a>
-        <h1 className="logo-text">
-          <a href="/">EleutherAI</a>
-        </h1>
+        <div>
+          <h1 className="logo">
+            <a href="/">
+              <img id="logo" className="logo-image" src="/img/eai_logo_small_exported.png" alt="EleutherAI logo" />
+              <span className="logo-text">EleutherAI</span>
+            </a>
+          </h1>
+        </div>
+
+        <div className="head-right">
+          <span className="dark-mode-switch">
+            <img src="/img/halfCircle.svg" alt="Dark mode" onClick={() => toggleDarkMode(!isDarkMode)} />
+          </span>
+        </div>
       </div>
     </header>
   )

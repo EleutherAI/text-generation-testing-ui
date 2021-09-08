@@ -23,3 +23,7 @@
 .prompt-input textarea:focus {
   border: 1px solid $blue;
 }
+
+.dark .prompt-input textarea:focus {
+  border: 1px solid $dark-theme-blue;
+}

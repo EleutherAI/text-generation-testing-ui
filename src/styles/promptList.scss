@@ -11,6 +11,10 @@
   box-shadow: 0 3px 10px rgb(34 25 25 / 40%);
 }
 
+.dark .prompt-list-container {
+  background-color: $dark-theme-bg;
+}
+
 ul.prompt-list {
   margin-top: 20px;
   list-style-type: none;
@@ -28,6 +32,10 @@ ul.prompt-list li {
   font-size: 13px;
   font-weight: bold;
   border-bottom: 1px dashed $blue;
+}
+
+.dark ul.prompt-list li {
+  color: $dark-theme-blue;
 }
 
 ul.prompt-list .item-link {

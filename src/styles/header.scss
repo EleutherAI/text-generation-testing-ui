@@ -10,23 +10,24 @@
   flex-direction: row;
 }
 
-header .logo-image {
+header h1.logo {
+  font-size: 1.4em;
+  font-family: "Eleuther", "Inter", sans-serif;
+  font-weight: 400;
+  height: 3em;
+}
+
+header h1.logo .logo-image {
   width: 40px;
   height: 40px;
 }
 
-h1.logo-text {
-  font-size: 1.4em;
-  font-weight: 400;
+.logo-text {
   text-align: left;
-  margin: 0;
-  padding: 0;
-  border: 0px none;
   position: relative;
-  left: 0.75em;
-  top: 0.4em;
+  left: 0.45em;
+  bottom: 0.4em;
   color: $white;
-  font-family: "Eleuther", "Inter", sans-serif;
 }
 
 h1.logo-text a {
@@ -34,8 +35,19 @@ h1.logo-text a {
   color: $white;
 }
 
-h1.logo {
-  margin-top: 0.3em;
-  font-size: 1.66em;
-  font-weight: 700;
+.head-right {
+  margin-left: auto;
+
+  .dark-mode-switch {
+    position: relative;
+    top: 0.7em;
+
+    img {
+      cursor: pointer;
+    }
+  }
+}
+
+.dark .head-right .dark-mode-switch img {
+  transform: rotate(180deg);
 }

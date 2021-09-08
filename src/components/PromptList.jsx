@@ -1,14 +1,22 @@
 import React from "react"
 
+import IconXClose from "../icons/IconXClose"
+
 import "../styles/promptList.scss"
 
-const PromptList = ({ close, data, selectItem }) => {
+const PromptList = ({ close, data, selectItem, isDarkMode }) => {
   return (
     <div className="prompt-list-overlay" onClick={close}>
       <div className="prompt-list-container" onClick={undefined}>
         <div className="prompt-list-head">
           <h4 className="prompt-head-title">Selected prompts</h4>
-          <img className="close-icon" src="img/x_close.svg" alt="Close prompt list" onClick={close} />
+          <IconXClose
+            className="close-icon"
+            fill={isDarkMode ? "#00bbff" : "#34566f"}
+            alt="Close prompt list"
+            onClick={close}
+            width="1.2em"
+          />
         </div>
         <div className="prompt-list-content">
           <ul className="prompt-list">

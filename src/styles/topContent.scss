@@ -21,6 +21,11 @@
   text-indent: -20px;
 }
 
+.dark .prompt-list-button {
+  color: $dark-theme-blue;
+  border: 1px solid $dark-theme-blue;
+}
+
 .prompt-list-button:hover {
   opacity: 0.7;
 }
@@ -47,10 +52,8 @@
   font-weight: bold;
 }
 
-.model-icon img {
+.model-icon svg {
   position: relative;
   left: 0.4em;
   top: 0.2em;
-  width: 14px;
-  height: 14px;
 }

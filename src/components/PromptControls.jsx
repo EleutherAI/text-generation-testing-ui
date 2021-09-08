@@ -1,5 +1,7 @@
 import React from "react"
 
+import IconLightning from "../icons/IconLightning"
+
 import "../styles/promptControls.scss"
 
 export default function PromptControls({
@@ -9,7 +11,8 @@ export default function PromptControls({
   setTemp,
   onClickSendPromptButton,
   isLoading,
-  promptText
+  promptText,
+  isDarkMode
 }) {
   return (
     <>
@@ -59,7 +62,7 @@ export default function PromptControls({
           className="button-primary">
           Run the model!
           <span className="button-icon">
-            <img src="img/lightning.svg" alt="lightning icon" />
+            <IconLightning fill={isDarkMode ? "#00bbff" : "#34566f"} />
           </span>
         </button>
         <div className="partner-promo-text">

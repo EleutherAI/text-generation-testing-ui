@@ -16,3 +16,7 @@ footer {
   text-decoration: underline;
   color: $blue;
 }
+
+.dark .footer-content a {
+  color: $dark-theme-blue;
+}

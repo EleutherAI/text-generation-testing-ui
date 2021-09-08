@@ -2,6 +2,18 @@
 
 body {
   font-size: 16px;
+  color: $black;
+}
+
+.App {
+  background-color: $white;
+  color: $black;
+  height: 100vh;
+}
+
+.App.dark {
+  background-color: $dark-theme-bg;
+  color: $dark-theme-text;
 }
 
 .content-wrapper {
@@ -31,6 +43,10 @@ h2.page-title {
   font-size: 1em;
 }
 
+.dark .link {
+  color: $dark-theme-blue;
+}
+
 .link:hover {
   color: $grey;
 }
@@ -50,6 +66,11 @@ h2.page-title {
   color: $blue;
   border: 1px solid $blue;
   cursor: pointer;
+}
+
+.dark .button-primary {
+  color: $dark-theme-blue;
+  border: 1px solid $dark-theme-blue;
 }
 
 .button-primary:hover {
@@ -81,6 +102,10 @@ h2.page-title {
 .partner-promo-text a {
   text-decoration: underline;
   color: $blue;
+}
+
+.dark .partner-promo-text a {
+  color: $dark-theme-blue;
 }
 
 .error-text {

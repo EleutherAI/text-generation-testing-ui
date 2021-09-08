@@ -1,8 +1,11 @@
 import React from "react"
 
+import IconPromptList from "../icons/IconPromptList"
+import IconEaiBrain from "../icons/IconEaiBrain"
+
 import "../styles/topContent.scss"
 
-export default function TopContent({ toggleShowPromptList }) {
+export default function TopContent({ toggleShowPromptList, isDarkMode }) {
   return (
     <div className="content-wrapper narrow top-content">
       <div className="left-top">
@@ -12,7 +15,7 @@ export default function TopContent({ toggleShowPromptList }) {
             {!!process.env.REACT_APP_MODEL_NAME ? process.env.REACT_APP_MODEL_NAME : "GPT-J-6B"}
           </span>
           <span className="model-icon">
-            <img src="img/eai_brain.svg" alt="model icon" />
+            <IconEaiBrain width="1em" height="1em" fill={isDarkMode ? "#FFFFFF" : "#000000"} />
           </span>
         </div>
         {process.env.REACT_APP_GITHUB_LINK === "true" && (
@@ -30,7 +33,7 @@ export default function TopContent({ toggleShowPromptList }) {
           <button className="prompt-list-button" onClick={() => toggleShowPromptList(true)}>
             Prompt List
             <span className="prompt-list-button-icon">
-              <img src="img/prompt_list.svg" alt="Prompt List Icon" />
+              <IconPromptList fill={isDarkMode ? "#00bbff" : "#34566f"} />
             </span>
           </button>
           <p className="description-text">Try a classic prompt evaluated on other models </p>

@@ -22,6 +22,7 @@ function App() {
   const [errorText, setErrorText] = useState("")
   const [insertPrompt, setInsertPrompt] = useState("")
   const [showPromptList, setShowPromptList] = useState(false)
+  const [darkmode, setDarkmode] = useState(false)
 
   useEffect(() => {
     setResultText("")
@@ -102,16 +103,21 @@ function App() {
   }, [onClickSendPromptButton, topP, temp, promptText])
 
   return (
-    <div className="App">
-      <Header />
+    <div className={darkmode ? "App dark" : "App"}>
+      <Header toggleDarkMode={setDarkmode} isDarkMode={darkmode} />
       <div className="main">
         {showPromptList && (
-          <PromptList close={() => setShowPromptList(false)} data={ClassicPrompts} selectItem={setInsertPrompt} />
+          <PromptList
+            close={() => setShowPromptList(false)}
+            data={ClassicPrompts}
+            selectItem={setInsertPrompt}
+            isDarkMode={darkmode}
+          />
         )}
         <h2 className="page-title">
           {!!process.env.REACT_APP_TITLE ? process.env.REACT_APP_TITLE : "TEST EAI LANGUAGE MODELS"}
         </h2>
-        <TopContent toggleShowPromptList={setShowPromptList} />
+        <TopContent toggleShowPromptList={setShowPromptList} isDarkMode={darkmode} />
         <div className="content-wrapper narrow">
           <div className="form-container">
             <PromptTextbox
@@ -128,6 +134,7 @@ function App() {
               onClickSendPromptButton={onClickSendPromptButton}
               isLoading={isLoading}
               promptText={promptText}
+              isDarkMode={darkmode}
             />
           </div>
           {isLoading && <Loader />}
