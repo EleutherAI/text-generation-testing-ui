@@ -5,19 +5,23 @@ body {
   color: $black;
 }
 
-#root {
-  height: 100%;
-  background-color: $black;
-}
-
 .App {
   background-color: $white;
   color: $black;
+  height: 100%;
 }
 
 .App.dark {
   background-color: $dark-theme-bg;
   color: $dark-theme-text;
+}
+
+.background-container {
+  background-color: $white;
+}
+
+.dark .background-container {
+  background-color: $dark-theme-bg;
 }
 
 .content-wrapper {
@@ -33,6 +37,7 @@ body {
 
 .main {
   padding-top: 0em;
+  padding-bottom: 1em;
 }
 
 h2.page-title {
