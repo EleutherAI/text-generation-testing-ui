@@ -259,29 +259,27 @@ h2.page-title {
 }
 
 .form-container {
-  margin: 3.4em 0em 1.5em 0em;
+  margin: 2em 0em 1.5em 0em;
 }
 
 .prompt-input textarea {
   border: none;
   overflow: auto;
   outline: none;
-
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
-
   resize: none; /*remove the resize handle on the bottom right*/
-
-  border: 0px none;
-  border-bottom: 2px solid var(--grey2);
-  width: 100%;
+  border: 1px solid var(--grey2);
   font-family: "Lato", sans-serif;
   font-size: 1em;
+  padding: 0.4em;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .prompt-input textarea:focus {
-  border-bottom: 2px solid var(--blue);
+  border: 1px solid var(--blue);
 }
 
 .model-controls {

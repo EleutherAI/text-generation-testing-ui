@@ -4,6 +4,7 @@ import "./App.css"
 import Loader from "./components/Loader"
 import PromptList from "./components/PromptList"
 import ClassicPrompts from "./data/classicPrompts"
+import TextareaAutosize from "react-textarea-autosize"
 
 function App() {
   const [promptText, setPromptText] = useState("")
@@ -149,15 +150,16 @@ function App() {
         <div className="content-wrapper narrow">
           <div className="form-container">
             <div className="prompt-input">
-              <textarea
+              <TextareaAutosize
+                minRows="3"
                 className="prompt-textarea"
                 placeholder="Write some prompt..."
-                rows={promptText.length ? 3 + Math.round(promptText.length / 100) : 3}
                 value={insertPrompt || promptText}
                 onChange={evt => {
                   setInsertPrompt("")
                   setPromptText(evt.currentTarget.value)
-                }}></textarea>
+                }}
+              />
             </div>
             <div className="model-controls">
               <div className="slider-container">
