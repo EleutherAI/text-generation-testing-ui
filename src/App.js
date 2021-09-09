@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from "react"
 
+import { getModelCompletion } from "./api/requests"
 import Header from "./components/Header"
 import TopContent from "./components/TopContent"
 import Footer from "./components/Footer"
@@ -37,57 +38,32 @@ function App() {
   }, [insertPrompt])
 
   const onClickSendPromptButton = useCallback(
-    (extraText, topP, temp) => {
-      const ENDPOINT = !!process.env.REACT_APP_MODEL_ENDPOINT_URL
-        ? process.env.REACT_APP_MODEL_ENDPOINT_URL
-        : "http://localhost:8000/completion"
-      const finalUrl =
-        process.env.REACT_APP_USE_PROXY === "true" ? `https://cors-proxy-janko.herokuapp.com/${ENDPOINT}` : ENDPOINT
-
+    async (extraText, topP, temp) => {
       setIsLoading(true)
       let fullPrompt = promptText
-      if (extraText !== "")
-        fullPrompt = promptInResult + extraText
+      if (extraText !== "") fullPrompt = promptInResult + extraText
 
       fullPrompt = fullPrompt.trim()
-      fetch(finalUrl, {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          context: fullPrompt,
-          topP,
-          temp,
-          response_length: 128,
-          remove_input: true
-        })
-      })
-        .then(response => response.json())
-        .then(data => {
-          setIsLoading(false)
-          setErrorText("")
-          if (data) {
-            let finalText = data[0]?.generated_text || data?.completion // the second one is for old API
-            if (finalText.search("<|endoftext|>") > -1) {
-              finalText = finalText.split("<|endoftext|>")[0]
-            }
 
-            setPromptInResult(fullPrompt)
-
-            // let combinedResult = ""
-            // if (extraText !== "") combinedResult = extraText
-            // combinedResult = combinedResult + finalText
-
-            setResultText(finalText)
+      try {
+        const response = await getModelCompletion(fullPrompt, topP, temp)
+        const data = await response.json()
+        if (data) {
+          let finalText = data[0]?.generated_text || data?.completion // the second one is for old API
+          if (finalText.search("<|endoftext|>") > -1) {
+            finalText = finalText.split("<|endoftext|>")[0]
           }
-        })
-        .catch(error => {
-          setIsLoading(false)
-          console.error("Error:", error)
-          setErrorText("Unable to connect to the model. Please try again.")
-        })
+
+          setPromptInResult(fullPrompt)
+
+          setResultText(finalText)
+        }
+      } catch (error) {
+        console.error("Error:", error)
+        setErrorText("Unable to connect to the model. Please try again.")
+      } finally {
+        setIsLoading(false)
+      }
     },
     [promptText, promptInResult]
   )
