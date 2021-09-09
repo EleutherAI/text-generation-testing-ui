@@ -18,12 +18,16 @@
   padding: 0.4em;
   width: 100%;
   box-sizing: border-box;
+  &:focus {
+    border: 1px solid $blue;
+  }
 }
 
-.prompt-input textarea:focus {
-  border: 1px solid $blue;
-}
+.dark .prompt-input textarea {
+  background-color: $dark-theme-bg2;
+  color: $white;
 
-.dark .prompt-input textarea:focus {
-  border: 1px solid $dark-theme-blue;
+  &:focus {
+    border: 1px solid $dark-theme-blue;
+  }
 }
