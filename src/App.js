@@ -46,7 +46,10 @@ function App() {
 
       setIsLoading(true)
       let fullPrompt = promptText
-      if (extraText !== "") fullPrompt = fullPrompt + extraText
+      if (extraText !== "")
+        fullPrompt = promptInResult + extraText
+
+      fullPrompt = fullPrompt.trim()
       fetch(finalUrl, {
         method: "POST",
         headers: {
@@ -54,7 +57,7 @@ function App() {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          context: fullPrompt.trim(),
+          context: fullPrompt,
           topP,
           temp,
           response_length: 128,
@@ -71,12 +74,13 @@ function App() {
               finalText = finalText.split("<|endoftext|>")[0]
             }
 
-            setPromptInResult(promptText)
+            setPromptInResult(fullPrompt)
 
-            let combinedResult = ""
-            if (extraText !== "") combinedResult = extraText
-            combinedResult = combinedResult + finalText
-            setResultText(combinedResult)
+            // let combinedResult = ""
+            // if (extraText !== "") combinedResult = extraText
+            // combinedResult = combinedResult + finalText
+
+            setResultText(finalText)
           }
         })
         .catch(error => {
@@ -85,7 +89,7 @@ function App() {
           setErrorText("Unable to connect to the model. Please try again.")
         })
     },
-    [promptText]
+    [promptText, promptInResult]
   )
 
   useEffect(() => {
