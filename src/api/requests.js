@@ -25,7 +25,7 @@ export async function getModelCompletion(fullPrompt, topP, temp) {
     },
     body: JSON.stringify({
       context: fullPrompt,
-      topP,
+      top_p: topP,
       temp,
       response_length: 128,
       remove_input: true
