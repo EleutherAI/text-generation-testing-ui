@@ -1,5 +1,9 @@
 @import "styles/colors.scss";
 
+.full-width {
+  flex-grow: 1;
+}
+
 body {
   font-size: 16px;
   color: $black;
@@ -28,7 +32,6 @@ body {
   margin: 0 auto;
   padding: 0 0.5em;
   max-width: 40em;
-  overflow-y: hidden;
 }
 
 .row {
@@ -36,14 +39,61 @@ body {
 }
 
 .main {
-  padding-top: 0em;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main-content {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  max-width: 60em;
+  padding-top: 0;
   padding-bottom: 1em;
 }
 
-h2.page-title {
-  font-size: 1.2em;
-  text-align: center;
-  margin: 1.2em 0 1em 0;
+.playground-header-section {
+  display: flex;
+  flex-direction: row;
+  margin-top: 2em;
+}
+
+.playground-header-section .internal-bar {
+  flex: 1;
+}
+
+.playground-body-section {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+}
+
+.playground-body-section .playground-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 1.2em;
+  min-height: 500px;
+}
+
+.playground-body-section .playground-body-wrapper {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+}
+
+.playground-body-section .playground-body-left-pane {
+  min-width: 10em;
+  margin-right: 1em;;
+}
+
+.playground-body-section .playground-body-right-pane {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
 }
 
 .link {
@@ -61,20 +111,28 @@ h2.page-title {
 }
 
 .form-container {
-  margin: 2em 0em 1.5em 0em;
+  margin: 2em 0 1.5em 0;
 }
 
-.button-container {
-  text-align: center;
+.run-model-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-top: 1em;
 }
 
 .button-primary {
-  background-color: transparent;
+  background-color: $black;
+  color: $white;
   padding: 0.4em 1em;
   font-size: 1.1em;
-  color: $blue;
-  border: 1px solid $blue;
+  border: 1px solid $black;
+  border-radius: 4px;
   cursor: pointer;
+}
+
+.run-btn {
+  max-width: 100px;
 }
 
 .dark .button-primary {
@@ -97,14 +155,14 @@ h2.page-title {
   top: 0.1em;
 }
 
-.button-container .footer-container {
+.run-model-container .footer-container {
   margin-top: 2em;
   background-color: $grey;
   padding: 0.75em 0;
 }
 
 .partner-promo-text {
-  margin-top: 20px;
+  margin-top: 0.6em;
   font-size: 0.6em;
 }
 
@@ -142,7 +200,7 @@ h2.page-title {
 
 @media (min-width: 1140px) {
   .content-wrapper {
-    max-width: 52em;
+    max-width: 60em;
   }
 
   .prompt-input textarea {
@@ -161,3 +219,4 @@ h2.page-title {
     width: 80%;
   }
 }
+
