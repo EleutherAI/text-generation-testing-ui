@@ -1,0 +1,30 @@
+.model-controls {
+  display: flex;
+  flex: 1;
+  justify-content: space-evenly;
+  flex-direction: column;
+  margin: 0.4em 1.2em;
+}
+.model-controls .prompt-section {
+  margin: 1em 0;
+}
+
+.model-controls .control-title{
+  margin-bottom: 0.4em;
+}
+
+.slider-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.slider-title {
+  display: flex;
+  flex-direction: row;
+  font-size: 0.8em;
+}
+
+.slider-value {
+  text-align: center;
+  font-size: 0.8em;
+}
