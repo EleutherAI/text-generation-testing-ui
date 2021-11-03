@@ -31,7 +31,7 @@ body {
 .content-wrapper {
   margin: 0 auto;
   padding: 0 0.5em;
-  max-width: 40em;
+  max-width: 45em;
 }
 
 .row {
@@ -68,6 +68,7 @@ body {
   display: flex;
   flex: 1;
   justify-content: center;
+  padding: 0 0.5em;
 }
 
 .playground-body-section .playground-body {
@@ -96,6 +97,11 @@ body {
   flex-direction: column;
 }
 
+.tooltip-text {
+  font-size: 1.2em;
+  line-height: 20px;
+}
+
 .link {
   color: $blue;
   text-decoration: underline;
@@ -121,6 +127,7 @@ body {
   margin-top: 1em;
 }
 
+
 .button-primary {
   background-color: $black;
   color: $white;
@@ -140,9 +147,6 @@ body {
   border: 1px solid $dark-theme-blue;
 }
 
-.button-primary:hover {
-  opacity: 0.7;
-}
 
 .button-primary:disabled {
   cursor: default;
@@ -184,7 +188,7 @@ body {
 
 /* Phone */
 @media (max-width: 450px) {
-  .prompt-list-container {
+  .preset-section {
     max-width: 80%;
   }
 }
@@ -192,7 +196,7 @@ body {
 /* Laptop */
 @media (min-width: 960px) {
   .content-wrapper {
-    max-width: 45em;
+    max-width: 60em;
   }
 }
 
@@ -200,7 +204,7 @@ body {
 
 @media (min-width: 1140px) {
   .content-wrapper {
-    max-width: 60em;
+    max-width: 90em;
   }
 
   .prompt-input textarea {
@@ -212,7 +216,7 @@ body {
 
 @media (min-width: 1600px) {
   .content-wrapper {
-    max-width: 70em;
+    max-width: 95em;
   }
 
   .prompt-input textarea {

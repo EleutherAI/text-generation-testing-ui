@@ -9,13 +9,14 @@ export default function PlaygroundHeader({ isDarkMode, presetSelected }) {
     <div className="content-wrapper playground-header">
       <div className="title">
         <h2>
-          {!!process.env.REACT_APP_TITLE ? process.env.REACT_APP_TITLE : "EleTinker - Text Generator"}
+          {!!process.env.REACT_APP_TITLE ? process.env.REACT_APP_TITLE : "EleTinker Text Generator"}
         </h2>
       </div>
 
       {process.env.REACT_APP_PROMPT_SUGGESTIONS === "true" &&
-      <Select className="prompt-select" options={PresetPrompts} placeholder="Try a preset prompt..."
-              onChange={presetSelected} />}
+      <Select className="preset-section" options={PresetPrompts} placeholder="Try a preset prompt..."
+              onChange={presetSelected} />
+      }
     </div>
   )
 }

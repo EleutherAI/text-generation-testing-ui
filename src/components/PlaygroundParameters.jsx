@@ -13,7 +13,7 @@ export default function PlaygroundParameters({
                                              }) {
   return (
     <div className="model-controls">
-      <div className="model-choice-section prompt-section">
+      <div className="model-choice-section">
         <div className="model-choice-title control-title">
             <span className="model-icon">
               <IconEaiBrain width="1em" height="1em" fill={isDarkMode ? "#FFFFFF" : "#000000"} />
@@ -31,11 +31,13 @@ export default function PlaygroundParameters({
       </div>
 
       <SliderParameter id={"myTempRange"} title={"Temperature"} value={temp} minValue={0} maxValue={150} defaultValue={80}
+                       tooltipText={"Controls the randomness of the generated text. The Lower the temperature, the more deterministic the model would be."}
                        onChange={({ target: { value: radius } }) => {
                          setTemp(radius / 100)
                        }} />
 
       <SliderParameter id={"myTopPRange"} title={"TOP-P"} value={topP} minValue={0} maxValue={100} defaultValue={90}
+                       tooltipText="Controls the diversity of the generated text. Use lower values for "
                        onChange={({ target: { value: radius } }) => {
                          setTopP(radius / 100)
                        }} />
