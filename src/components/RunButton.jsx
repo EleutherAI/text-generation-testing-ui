@@ -1,17 +1,22 @@
 import React from "react"
 
-export default function RunButton({ isDisabled, isLoading, onClick, errorText }) {
+export default function RunButton({ isDisabled, onClick, errorText }) {
 
   return (
     <div className="run-model-container">
       <button className="button-primary run-btn" disabled={isDisabled} onClick={onClick}>
         Run ✨
       </button>
-      {errorText && !isLoading && <p className="error-text">{errorText}</p>}
 
       <div className="partner-promo-text">
-        Powered by <a href="https://hub.getneuro.ai/model/nlp/gpt-j-6B-text-generation">Neuro</a>
+        Powered by&nbsp;
+        <a href="https://hub.getneuro.ai/model/nlp/gpt-j-6B-text-generation"
+           target="_blank" rel="noopener noreferrer">
+          Neuro
+        </a>
       </div>
+
+      {errorText && <p className="error-text">{errorText}</p>}
     </div>
   )
 }
