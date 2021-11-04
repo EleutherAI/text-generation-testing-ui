@@ -99,12 +99,11 @@ body {
 
 .tooltip-text {
   font-size: 1.2em;
-  line-height: 20px;
+  line-height: 16px;
 }
 
 .link {
   color: $blue;
-  text-decoration: underline;
   font-size: 1em;
 }
 
@@ -144,7 +143,6 @@ body {
 
 .dark .button-primary {
   color: $dark-theme-blue;
-  border: 1px solid $dark-theme-blue;
 }
 
 
@@ -171,7 +169,6 @@ body {
 }
 
 .partner-promo-text a {
-  text-decoration: underline;
   color: $blue;
 }
 
