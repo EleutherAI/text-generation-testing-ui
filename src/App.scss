@@ -1,5 +1,9 @@
 @import "styles/colors.scss";
 
+.full-width {
+  flex-grow: 1;
+}
+
 body {
   font-size: 16px;
   color: $black;
@@ -27,8 +31,7 @@ body {
 .content-wrapper {
   margin: 0 auto;
   padding: 0 0.5em;
-  max-width: 40em;
-  overflow-y: hidden;
+  max-width: 45em;
 }
 
 .row {
@@ -36,19 +39,71 @@ body {
 }
 
 .main {
-  padding-top: 0em;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main-content {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  max-width: 60em;
+  padding-top: 0;
   padding-bottom: 1em;
 }
 
-h2.page-title {
+.playground-header-section {
+  display: flex;
+  flex-direction: row;
+  margin-top: 2em;
+}
+
+.playground-header-section .internal-bar {
+  flex: 1;
+}
+
+.playground-body-section {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  padding: 0 0.5em;
+}
+
+.playground-body-section .playground-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 1.2em;
+  min-height: 500px;
+}
+
+.playground-body-section .playground-body-wrapper {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+}
+
+.playground-body-section .playground-body-left-pane {
+  min-width: 10em;
+  margin-right: 1em;;
+}
+
+.playground-body-section .playground-body-right-pane {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.tooltip-text {
   font-size: 1.2em;
-  text-align: center;
-  margin: 1.2em 0 1em 0;
+  line-height: 16px;
 }
 
 .link {
   color: $blue;
-  text-decoration: underline;
   font-size: 1em;
 }
 
@@ -61,30 +116,35 @@ h2.page-title {
 }
 
 .form-container {
-  margin: 2em 0em 1.5em 0em;
+  margin: 2em 0 1.5em 0;
 }
 
-.button-container {
-  text-align: center;
+.run-model-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-top: 1em;
 }
+
 
 .button-primary {
-  background-color: transparent;
+  background-color: $black;
+  color: $white;
   padding: 0.4em 1em;
   font-size: 1.1em;
-  color: $blue;
-  border: 1px solid $blue;
+  border: 1px solid $black;
+  border-radius: 4px;
   cursor: pointer;
+}
+
+.run-btn {
+  max-width: 100px;
 }
 
 .dark .button-primary {
   color: $dark-theme-blue;
-  border: 1px solid $dark-theme-blue;
 }
 
-.button-primary:hover {
-  opacity: 0.7;
-}
 
 .button-primary:disabled {
   cursor: default;
@@ -97,19 +157,18 @@ h2.page-title {
   top: 0.1em;
 }
 
-.button-container .footer-container {
+.run-model-container .footer-container {
   margin-top: 2em;
   background-color: $grey;
   padding: 0.75em 0;
 }
 
 .partner-promo-text {
-  margin-top: 20px;
+  margin-top: 0.6em;
   font-size: 0.6em;
 }
 
 .partner-promo-text a {
-  text-decoration: underline;
   color: $blue;
 }
 
@@ -118,15 +177,16 @@ h2.page-title {
 }
 
 .error-text {
-  text-align: center;
+  text-align: left;
   color: red;
+  margin: 1em 0;
 }
 
 /* ------ RESPONSIVE STYLES ------ */
 
 /* Phone */
 @media (max-width: 450px) {
-  .prompt-list-container {
+  .preset-section {
     max-width: 80%;
   }
 }
@@ -134,7 +194,7 @@ h2.page-title {
 /* Laptop */
 @media (min-width: 960px) {
   .content-wrapper {
-    max-width: 45em;
+    max-width: 50em;
   }
 }
 
@@ -142,7 +202,7 @@ h2.page-title {
 
 @media (min-width: 1140px) {
   .content-wrapper {
-    max-width: 52em;
+    max-width: 55em;
   }
 
   .prompt-input textarea {
@@ -154,10 +214,11 @@ h2.page-title {
 
 @media (min-width: 1600px) {
   .content-wrapper {
-    max-width: 70em;
+    max-width: 50em;
   }
 
   .prompt-input textarea {
     width: 80%;
   }
 }
+

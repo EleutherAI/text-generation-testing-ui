@@ -1,11 +1,15 @@
 @import "../styles/colors.scss";
 
 .prompt-input {
+  display: flex;
+  flex: 1;
   text-align: center;
 }
 
+
 .prompt-input textarea {
-  border: none;
+  width: 100%;
+  height: inherit;
   overflow: auto;
   outline: none;
   -webkit-box-shadow: none;
@@ -13,14 +17,12 @@
   box-shadow: none;
   resize: none; /*remove the resize handle on the bottom right*/
   border: 1px solid $grey2;
+  border-radius: 8px;
   font-family: "Lato", sans-serif;
   font-size: 1em;
-  padding: 0.4em;
-  width: 100%;
+  line-height: 24px;
+  padding: 1em;
   box-sizing: border-box;
-  &:focus {
-    border: 1px solid $blue;
-  }
 }
 
 .dark .prompt-input textarea {

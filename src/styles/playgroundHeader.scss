@@ -1,0 +1,49 @@
+@import "../styles/colors.scss";
+
+.playground-header {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.playground-header .title {
+  margin-left: 0.6em;
+}
+
+.right-top {
+  margin-left: auto;
+}
+
+.preset-section {
+  margin-left: auto;
+  width: 50%;
+}
+
+.model-choice-section {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin: 0.8em 0;
+  font-size: 0.9em;
+}
+
+.model-choice-title {
+  display: flex;
+}
+
+.model-choice-section .model-type {
+  display: flex;
+  flex-direction: row;
+}
+
+.model-name {
+  font-weight: bold;
+}
+
+.model-icon {
+  margin-right: 0.4em;
+}
+
+.model-icon svg {
+  position: relative;
+}
