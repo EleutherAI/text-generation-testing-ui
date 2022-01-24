@@ -19,6 +19,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "engines": {
+    "node": ">=14.17.0"
+  },
   "browserslist": {
     "production": [
       ">0.2%",
