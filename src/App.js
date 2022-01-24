@@ -55,8 +55,8 @@ function App() {
           }
 
           setPromptInResult(fullPrompt)
-
           setResultText(finalText)
+          setErrorText("")
         }
       } catch (error) {
         console.error("Error:", error)
