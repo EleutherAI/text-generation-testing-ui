@@ -66,7 +66,7 @@ export default function PromptControls({
           </span>
         </button>
         <div className="partner-promo-text">
-          Powered by <a href="https://hub.getneuro.ai/model/nlp/gpt-j-6B-text-generation">Mystic.ai</a>
+          Powered by <a href="https://www.mystic.ai/">Mystic.ai</a>
         </div>
       </div>
     </>
